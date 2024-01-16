@@ -16,27 +16,33 @@ struct ContentView: View {
         HStack {
             ZStack{
                 Circle().foregroundColor(.red)
-                Circle().stroke(lineWidth: 3)
+                Circle().stroke(lineWidth: 3 )
+                    .colorInvert()
             }
             ZStack{
                 Circle().foregroundColor(.orange)
                 Circle().stroke(lineWidth: 3)
+                    .colorInvert()
             }
             ZStack{
                 Circle().foregroundColor(.yellow)
                 Circle().stroke(lineWidth: 3)
+                    .colorInvert()
             }
             ZStack{
                 Circle().foregroundColor(.green)
                 Circle().stroke(lineWidth: 3)
+                    .colorInvert()
             }
             ZStack{
                 Circle().foregroundColor(.blue)
                 Circle().stroke(lineWidth: 3)
+                    .colorInvert()
             }
             ZStack{
                 Circle().foregroundColor(.purple)
                 Circle().stroke(lineWidth: 3)
+                    .colorInvert()
             }
         }
         .padding()
