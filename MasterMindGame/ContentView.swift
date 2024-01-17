@@ -14,41 +14,24 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack {
-            ZStack{
-                Circle().foregroundColor(.red)
-                Circle().stroke(lineWidth: 3 )
-                    .colorInvert()
-            }
-            ZStack{
-                Circle().foregroundColor(.orange)
-                Circle().stroke(lineWidth: 3)
-                    .colorInvert()
-            }
-            ZStack{
-                Circle().foregroundColor(.yellow)
-                Circle().stroke(lineWidth: 3)
-                    .colorInvert()
-            }
-            ZStack{
-                Circle().foregroundColor(.green)
-                Circle().stroke(lineWidth: 3)
-                    .colorInvert()
-            }
-            ZStack{
-                Circle().foregroundColor(.blue)
-                Circle().stroke(lineWidth: 3)
-                    .colorInvert()
-            }
-            ZStack{
-                Circle().foregroundColor(.purple)
-                Circle().stroke(lineWidth: 3)
-                    .colorInvert()
-            }
+            ForEach(0..<4, content: {index in
+                ZStack{
+                    Circle()
+                        .foregroundColor(.red)
+                    Circle()
+                        .stroke(lineWidth: 3 )
+                        .colorInvert()
+                }
+            })
         }
-        .padding()
+        
     }
-}
-
+                    
+                    
+                    
+                    
+                    
+                    
 #Preview {
     ContentView()
 }
