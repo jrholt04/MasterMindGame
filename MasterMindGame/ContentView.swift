@@ -18,16 +18,19 @@ struct ContentView: View {
             ForEach(0..<6, content: {index in
                 ZStack{
                     Circle()
-                        .stroke(lineWidth: 10 )
-                        .colorInvert()
+                        .stroke(lineWidth: 5 )
+                        .foregroundColor(Color.black)
                     Circle()
                         .foregroundColor(colorArray[index])
                         
                 }
+                
             })
         }
-        
+        .padding()
+        //.background(Color.black)
     }
+       
 }
                     
                     
