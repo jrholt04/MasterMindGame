@@ -13,13 +13,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        //array of colors for the circles
         let colorArray = [Color.red, Color.green, Color.blue, Color.yellow, Color.purple, Color.orange]
         HStack {
+            //foreach for all the circles
             ForEach(0..<6, content: {index in
                 ZStack{
+                    //background circle
                     Circle()
                         .stroke(lineWidth: 5 )
                         .foregroundColor(Color.black)
+                   //main circle
                     Circle()
                         .foregroundColor(colorArray[index])
                         
@@ -28,7 +32,7 @@ struct ContentView: View {
             })
         }
         .padding()
-        //.background(Color.black)
+        
     }
        
 }
