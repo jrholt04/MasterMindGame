@@ -13,19 +13,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        let colorArray = [Color.red, Color.green, Color.blue, Color.yellow, Color.purple, Color.orange]
         HStack {
-            ForEach(0..<4, content: {index in
+            ForEach(0..<6, content: {index in
                 ZStack{
                     Circle()
-                        .foregroundColor(.red)
-                    Circle()
-                        .stroke(lineWidth: 3 )
+                        .stroke(lineWidth: 10 )
                         .colorInvert()
+                    Circle()
+                        .foregroundColor(colorArray[index])
+                        
                 }
             })
         }
         
     }
+}
                     
                     
                     
