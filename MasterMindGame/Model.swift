@@ -11,6 +11,7 @@ import Foundation
 
 struct Model {
     
+    //our variables for the model
     var circleOptions: Array<CircleOption>
     var currentCircle: Int? //this is an optional
     
@@ -22,6 +23,7 @@ struct Model {
         }
     }
     
+    //mutator func that on click changes the bool var of the circle to true and reverts the previsous selection to false 
     mutating func chooseCircle(circleNumber: Int){
         if let oldCircle = currentCircle{
             circleOptions[oldCircle].isSelected = false

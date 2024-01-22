@@ -18,6 +18,7 @@ let colorArray = [Color.red, Color.green, Color.blue, Color.yellow, Color.purple
 
 struct ContentView: View {
     
+    //viewable classs view model 
     @ObservedObject var vm = ViewModel()
     
     var body: some View {
@@ -26,6 +27,7 @@ struct ContentView: View {
             //foreach for all the circles
             ForEach(vm.circleOptions) {thisCircle in
                 CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected)
+                   //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
                     .onTapGesture(perform: {
                         //choose a circle
                         vm.chooseCircle(circleNumber: thisCircle.id)
@@ -37,6 +39,7 @@ struct ContentView: View {
         
     }
     
+    //struct that holds all of the data for and states of the cirlces
     struct CircleOptionView: View {
         var colorInt : Int
         var isSelected: Bool

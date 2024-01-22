@@ -12,13 +12,15 @@ import Foundation
 
 class ViewModel: ObservableObject  {
     
+    //makes the model viewable to the view model
     @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
-    
+    //this allows the view model to present the circleOptions array to the view
     var circleOptions: Array<CircleOption>{
         return m.circleOptions
     }
     
+    //this is the choose cirlce function that passes the onclick function to the model
     func chooseCircle(circleNumber: Int){
         m.chooseCircle(circleNumber: circleNumber)
         print("VIEW MODEL: choose circle number \(circleNumber)")
