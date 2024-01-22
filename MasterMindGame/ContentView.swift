@@ -18,14 +18,14 @@ let colorArray = [Color.red, Color.green, Color.blue, Color.yellow, Color.purple
 
 struct ContentView: View {
     
-    var vm = ViewModel()
+    @ObservedObject var vm = ViewModel()
     
     var body: some View {
         
         HStack {
             //foreach for all the circles
             ForEach(vm.circleOptions) {thisCircle in
-                CircleOptionView(colorInt: thisCircle.id)
+                CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected)
                     .onTapGesture(perform: {
                         //choose a circle
                         vm.chooseCircle(circleNumber: thisCircle.id)
@@ -39,12 +39,13 @@ struct ContentView: View {
     
     struct CircleOptionView: View {
         var colorInt : Int
+        var isSelected: Bool
         
         var body: some View{
             ZStack{
                 //background circle
                 Circle()
-                    .stroke(lineWidth: CGFloat(DEFAULT_WIDTH) )
+                    .stroke(lineWidth: isSelected ? 12 : 6 )
                     .foregroundColor(Color.black)
                //main circle
                 Circle()

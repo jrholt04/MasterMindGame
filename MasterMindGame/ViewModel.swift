@@ -10,9 +10,9 @@
 import Foundation
 
 
-class ViewModel {
+class ViewModel: ObservableObject  {
     
-    var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
+    @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
     
     var circleOptions: Array<CircleOption>{

@@ -9,5 +9,4 @@
 
 import Foundation
 
-let DEFAULT_WIDTH = 6
 let NUMBER_OF_CIRCLE = 6
