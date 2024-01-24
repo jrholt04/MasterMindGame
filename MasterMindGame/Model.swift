@@ -15,11 +15,20 @@ struct Model {
     var circleOptions: Array<CircleOption>
     var currentCircle: Int? //this is an optional
     
+    //array of all user guesses
+    var userGuesses: Array<Guess>
+    
     //initiazlizes all of the circles in the array
     init (numberOfCircleOption: Int){
         circleOptions = Array<CircleOption>()
         for circleIndex in 0..<numberOfCircleOption {
             circleOptions.append(CircleOption(id: circleIndex, isSelected: false))
+        }
+        
+        //initalize the array of all the users guesses
+        userGuesses = Array<Guess>()
+        for i in 0..<MAX_ATTEMPTS{
+            userGuesses.append(Guess(id: i))
         }
     }
     
@@ -32,6 +41,8 @@ struct Model {
         currentCircle = circleNumber
         print("MODEL: model chose letter number \(circleNumber)")
     }
+    
+    
 }
 
 
@@ -42,5 +53,14 @@ struct CircleOption: Identifiable {
     // is this a selected circle option
     var isSelected: Bool
     
+    
+}
+
+struct Guess: Identifiable {
+    //
+    var id: Int
+    
+    //an array of optionals to hold the user guess
+    var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
     
 }

@@ -15,6 +15,12 @@ class ViewModel: ObservableObject  {
     //makes the model viewable to the view model
     @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
+    //get all of the users guesses
+    var userGuesses: Array<Guess> {
+       return m.userGuesses
+    }
+    
+    
     //this allows the view model to present the circleOptions array to the view
     var circleOptions: Array<CircleOption>{
         return m.circleOptions
