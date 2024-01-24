@@ -32,6 +32,10 @@ struct ContentView: View {
             // represents the grid of blank guesses 
             ForEach(vm.userGuesses){ guessNumber in
                 CircleGuessRow(row: guessNumber.id)
+                    .onTapGesture {
+                        print("VIEW: trying to select \(guessNumber.id)")
+                        vm.chooseRow(rowNumber: guessNumber.id)
+                    }
             }
             .padding()
             

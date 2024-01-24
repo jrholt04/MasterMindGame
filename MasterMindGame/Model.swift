@@ -14,6 +14,7 @@ struct Model {
     //our variables for the model
     var circleOptions: Array<CircleOption>
     var currentCircle: Int? //this is an optional
+    var currentRowNumber: Int?
     
     //array of all user guesses
     var userGuesses: Array<Guess>
@@ -40,6 +41,11 @@ struct Model {
         circleOptions[circleNumber].isSelected = true
         currentCircle = circleNumber
         print("MODEL: model chose letter number \(circleNumber)")
+    }
+    
+    mutating func chooseRow(rowNumber: Int){
+        print("VIEWMODEL: choose row number \(rowNumber)")
+        currentRowNumber = rowNumber
     }
     
     
