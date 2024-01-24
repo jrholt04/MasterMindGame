@@ -22,13 +22,14 @@ struct ContentView: View {
     
     var body: some View {
         
+        
         VStack{
             // title of game
             Text("MASTERMIND")
                 .font(.system(size: 20))
                 .bold()
             
-            
+            // represents the grid of blank guesses 
             ForEach(vm.userGuesses){ guessNumber in
                 CircleGuessRow(row: guessNumber.id)
             }
