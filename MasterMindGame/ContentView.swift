@@ -31,16 +31,14 @@ struct ContentView: View {
             
             // represents the grid of blank guesses 
             ForEach(vm.userGuesses){ guessNumber in
-                CircleGuessRow(row: guessNumber.id)
+                CircleGuessRow(row: guessNumber.id, vmLocal: vm)
                     .onTapGesture {
                         print("VIEW: trying to select \(guessNumber.id)")
                         vm.chooseRow(rowNumber: guessNumber.id)
                     }
             }
             .padding()
-            
-            
-            
+        
             Text("choose a color: ")
                 .font(.system(size: 15))
                 .bold()
@@ -80,9 +78,6 @@ struct ContentView: View {
                 
             }
         }
-        
-        
-        
     }
     
     //view for a single circle of a users guess
@@ -115,32 +110,44 @@ struct ContentView: View {
     }
     
     // a struct for an entire guess row
+    //column is the circle in the guess and the row is what guess the user is on
     struct CircleGuessRow: View {
         var row: Int
+        @ObservedObject var vmLocal: ViewModel
         
         var body: some View {
             HStack{
-                CircleGuessView()
-                CircleGuessView()
-                CircleGuessView()
-                CircleGuessView()
-                
-
-                
+                //for each for each circle in the guess
+                ForEach(0..<CIRCLE_GUESS_COUNT){ column in
+                    //this confusing mess is the computed variable of what we select from the ontapgesture from below
+                    //it is watching the vm version of the userguesses and when the value is set to a certain color it updates automatically
+                    CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
+                        .onTapGesture {
+                            print("VIEW: setting circle number \(column) in row \(row)")
+                            vmLocal.setGuessColor(row: row, col: column)
+                        }
+                }
             }
         }
     }
-    
-       
 }
 
 
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Preview {
     ContentView()
 }

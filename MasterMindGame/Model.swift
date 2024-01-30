@@ -12,8 +12,9 @@ import Foundation
 struct Model {
     
     //our variables for the model
+    // this is an array that represents the selection colors at the bottom of the screen
     var circleOptions: Array<CircleOption>
-    var currentCircle: Int? //this is an optional
+    var currentCircle: Int? //this is an optional and the selected color in the selection row
     var currentRowNumber: Int?
     
     //array of all user guesses
@@ -43,11 +44,18 @@ struct Model {
         print("MODEL: model chose letter number \(circleNumber)")
     }
     
+    //this is a function that sets the selected row to the row var in the model
     mutating func chooseRow(rowNumber: Int){
         print("VIEWMODEL: choose row number \(rowNumber)")
         currentRowNumber = rowNumber
     }
     
+    //set a color in the user guess
+    //set the current row and current selected cirlce to a specific color
+    mutating func setGuessColor(row: Int, col: Int){
+        print("MODEL: setting color for \(col) in row \(row)")
+        userGuesses[row].guessItem[col] = currentCircle
+    }
     
 }
 

@@ -38,4 +38,10 @@ class ViewModel: ObservableObject  {
         print("VIEW MODEL: choose circle number \(circleNumber)")
     }
     
+    //this is the function to set the color of the selected cirlce to the choosen color
+    func setGuessColor(row: Int, col: Int){
+        print("VIEW MODEL: set letter \(col) in row \(row)")
+        m.setGuessColor(row: row, col: col)
+    }
+    
 }
