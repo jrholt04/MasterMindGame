@@ -19,5 +19,5 @@ let NUMBER_OF_CIRCLE = 6
 let CIRCLE_GUESS_COUNT = 4
 
 //number of attempts at the correct color
-let MAX_ATTEMPTS = 6
+let MAX_ATTEMPTS = 10
 
