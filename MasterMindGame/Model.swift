@@ -15,7 +15,7 @@ struct Model {
     // this is an array that represents the selection colors at the bottom of the screen
     var circleOptions: Array<CircleOption>
     var currentCircle: Int? //this is an optional and the selected color in the selection row
-    var currentRowNumber: Int?
+    var currentRowNumber = MAX_ATTEMPTS - 1
     
     //array of all user guesses
     var userGuesses: Array<Guess>
@@ -30,8 +30,9 @@ struct Model {
         //initalize the array of all the users guesses
         userGuesses = Array<Guess>()
         for i in 0..<MAX_ATTEMPTS{
-            userGuesses.append(Guess(id: i))
+            userGuesses.append(Guess(id: i, isFullGuess: false, isSelectable: false))
         }
+        userGuesses[currentRowNumber].isSelectable = true
     }
     
     //mutator func that on click changes the bool var of the circle to true and reverts the previsous selection to false 
@@ -55,6 +56,34 @@ struct Model {
     mutating func setGuessColor(row: Int, col: Int){
         print("MODEL: setting color for \(col) in row \(row)")
         userGuesses[row].guessItem[col] = currentCircle
+        checkForFullGuess(row: row)
+        
+        
+    }
+    
+    //this function checks to see if the current row is full or not
+    mutating func checkForFullGuess(row: Int){
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            if (userGuesses[row].guessItem[i] != nil){
+                userGuesses[row].isFullGuess = true
+            }
+            else {
+                userGuesses[row].isFullGuess = false
+                print("MODEL: this guess is not full")
+                break
+                
+            }
+        }
+        //if the row is full and is in the range of valid rows then set next row to selectable and current row to full
+        //if it is the last row after it is full set it to not selectable 
+        if (userGuesses[row].isFullGuess == true && row != 0){
+            userGuesses[row - 1].isSelectable = true
+            userGuesses[row].isSelectable = false
+            currentRowNumber = currentRowNumber - 1
+        }
+        if (userGuesses[row].isFullGuess == true && row == 0){
+            userGuesses[row].isSelectable = false
+        }
     }
     
 }
@@ -73,6 +102,8 @@ struct CircleOption: Identifiable {
 struct Guess: Identifiable {
     //
     var id: Int
+    var isFullGuess: Bool
+    var isSelectable: Bool
     
     //an array of optionals to hold the user guess
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)

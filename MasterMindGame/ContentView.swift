@@ -113,6 +113,8 @@ struct ContentView: View {
     //column is the circle in the guess and the row is what guess the user is on
     struct CircleGuessRow: View {
         var row: Int
+        
+        
         @ObservedObject var vmLocal: ViewModel
         
         var body: some View {
@@ -121,11 +123,19 @@ struct ContentView: View {
                 ForEach(0..<CIRCLE_GUESS_COUNT){ column in
                     //this confusing mess is the computed variable of what we select from the ontapgesture from below
                     //it is watching the vm version of the userguesses and when the value is set to a certain color it updates automatically
-                    CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
-                        .onTapGesture {
-                            print("VIEW: setting circle number \(column) in row \(row)")
-                            vmLocal.setGuessColor(row: row, col: column)
-                        }
+                    if (vmLocal.userGuesses[row].isSelectable == true){
+                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
+                            .onTapGesture {
+                                print("VIEW: setting circle number \(column) in row \(row)")
+                                vmLocal.setGuessColor(row: row, col: column)
+                            }
+                    }
+                    else{
+                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
+                       
+                    }
+                    
+                        
                 }
             }
         }
