@@ -38,6 +38,7 @@ struct Model {
         userGuesses[currentRowNumber].isSelectable = true
         
         //init the secret code array
+        //the randomizer is from this link https://codewithchris.com/swift-random-number/
         for i in 0..<CIRCLE_GUESS_COUNT{
             secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6))) )
         }
