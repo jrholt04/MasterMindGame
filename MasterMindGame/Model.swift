@@ -16,6 +16,8 @@ struct Model {
     var circleOptions: Array<CircleOption>
     var currentCircle: Int? //this is an optional and the selected color in the selection row
     var currentRowNumber = MAX_ATTEMPTS - 1
+    //array of the secret code
+    var secretCode: Array<SecretBead>
     
     //array of all user guesses
     var userGuesses: Array<Guess>
@@ -23,6 +25,7 @@ struct Model {
     //initiazlizes all of the circles in the array
     init (numberOfCircleOption: Int){
         circleOptions = Array<CircleOption>()
+        secretCode = Array<SecretBead>()
         for circleIndex in 0..<numberOfCircleOption {
             circleOptions.append(CircleOption(id: circleIndex, isSelected: false))
         }
@@ -33,6 +36,15 @@ struct Model {
             userGuesses.append(Guess(id: i, isFullGuess: false, isSelectable: false))
         }
         userGuesses[currentRowNumber].isSelectable = true
+        
+        //init the secret code array
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6))) )
+        }
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
+        }
+        
     }
     
     //mutator func that on click changes the bool var of the circle to true and reverts the previsous selection to false 
@@ -107,5 +119,12 @@ struct Guess: Identifiable {
     
     //an array of optionals to hold the user guess
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
+    
+}
+
+//this struct uses a random number generator to store the value of the color in the corresponding array of colors
+struct SecretBead: Identifiable {
+    var id: Int
+    var colorOfBead: Int
     
 }
