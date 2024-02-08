@@ -61,17 +61,19 @@ struct Model {
     //this is a function that sets the selected row to the row var in the model
     mutating func chooseRow(rowNumber: Int){
         print("VIEWMODEL: choose row number \(rowNumber)")
-        currentRowNumber = rowNumber
     }
     
     //set a color in the user guess
     //set the current row and current selected cirlce to a specific color
     mutating func setGuessColor(row: Int, col: Int){
         print("MODEL: setting color for \(col) in row \(row)")
-        userGuesses[row].guessItem[col] = currentCircle
+        if (userGuesses[row].guessItem[col] == currentCircle){
+            userGuesses[row].guessItem[col] = nil
+        }
+        else{
+            userGuesses[row].guessItem[col] = currentCircle
+        }
         checkForFullGuess(row: row)
-        
-        
     }
     
     //this function checks to see if the current row is full or not
@@ -87,16 +89,18 @@ struct Model {
                 
             }
         }
-        //if the row is full and is in the range of valid rows then set next row to selectable and current row to full
-        //if it is the last row after it is full set it to not selectable 
-        if (userGuesses[row].isFullGuess == true && row != 0){
-            userGuesses[row - 1].isSelectable = true
-            userGuesses[row].isSelectable = false
+    }
+    
+    mutating func nextRow(){
+        if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber != 0){
+            userGuesses[currentRowNumber - 1].isSelectable = true
+            userGuesses[currentRowNumber].isSelectable = false
             currentRowNumber = currentRowNumber - 1
         }
-        if (userGuesses[row].isFullGuess == true && row == 0){
-            userGuesses[row].isSelectable = false
+        if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
+            userGuesses[currentRowNumber].isSelectable = false
         }
+            
     }
     
 }
@@ -108,12 +112,9 @@ struct CircleOption: Identifiable {
     
     // is this a selected circle option
     var isSelected: Bool
-    
-    
 }
 
 struct Guess: Identifiable {
-    //
     var id: Int
     var isFullGuess: Bool
     var isSelectable: Bool

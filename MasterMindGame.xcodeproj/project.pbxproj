@@ -10,6 +10,7 @@
 		6190A9532B5DE463006D533A /* SymbolicConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A9522B5DE463006D533A /* SymbolicConstants.swift */; };
 		6190A9552B5DE7DE006D533A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A9542B5DE7DE006D533A /* Model.swift */; };
 		6190A9572B5DF0AA006D533A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A9562B5DF0AA006D533A /* ViewModel.swift */; };
+		6190A9592B746BC5006D533A /* EnterKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190A9582B746BC5006D533A /* EnterKey.swift */; };
 		61B361E42B571ECB004FBCE8 /* MasterMindGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B361E32B571ECB004FBCE8 /* MasterMindGameApp.swift */; };
 		61B361E62B571ECB004FBCE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B361E52B571ECB004FBCE8 /* ContentView.swift */; };
 		61B361E82B571ECC004FBCE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B361E72B571ECC004FBCE8 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		6190A9522B5DE463006D533A /* SymbolicConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolicConstants.swift; sourceTree = "<group>"; };
 		6190A9542B5DE7DE006D533A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6190A9562B5DF0AA006D533A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		6190A9582B746BC5006D533A /* EnterKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterKey.swift; sourceTree = "<group>"; };
 		61B361E02B571ECB004FBCE8 /* MasterMindGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterMindGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B361E32B571ECB004FBCE8 /* MasterMindGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterMindGameApp.swift; sourceTree = "<group>"; };
 		61B361E52B571ECB004FBCE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				61B361E52B571ECB004FBCE8 /* ContentView.swift */,
 				6190A9562B5DF0AA006D533A /* ViewModel.swift */,
 				6190A9542B5DE7DE006D533A /* Model.swift */,
+				6190A9582B746BC5006D533A /* EnterKey.swift */,
 				6190A9522B5DE463006D533A /* SymbolicConstants.swift */,
 				61B361E72B571ECC004FBCE8 /* Assets.xcassets */,
 				61B361E92B571ECC004FBCE8 /* MasterMindGame.entitlements */,
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6190A9592B746BC5006D533A /* EnterKey.swift in Sources */,
 				6190A9572B5DF0AA006D533A /* ViewModel.swift in Sources */,
 				61B361E62B571ECB004FBCE8 /* ContentView.swift in Sources */,
 				61B361E42B571ECB004FBCE8 /* MasterMindGameApp.swift in Sources */,

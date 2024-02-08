@@ -29,7 +29,7 @@ struct ContentView: View {
                 .font(.system(size: 20))
                 .bold()
             
-            // represents the grid of blank guesses 
+            //these are the guesses 
             ForEach(vm.userGuesses){ guessNumber in
                 CircleGuessRow(row: guessNumber.id, vmLocal: vm)
                     .onTapGesture {
@@ -38,7 +38,8 @@ struct ContentView: View {
                     }
             }
             .padding()
-        
+            
+            
             Text("choose a color: ")
                 .font(.system(size: 15))
                 .bold()
@@ -54,9 +55,18 @@ struct ContentView: View {
                             print("VIEW: trying to choose letter number \(thisCircle.id)")
                         })
                 }
+                //enter key
+                makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
+                    .onTapGesture{
+                        if vm.userGuesses[vm.currentRow].isFullGuess {
+                            print("VIEW: current row is full -- on to next row")
+                            vm.nextRow()
+                        }
+                    }
             }
             .padding()
-            //user prompt
+            
+            
             
         }
     }
@@ -114,15 +124,18 @@ struct ContentView: View {
     struct CircleGuessRow: View {
         var row: Int
         
-        
         @ObservedObject var vmLocal: ViewModel
         
         var body: some View {
             HStack{
+                
                 //for each for each circle in the guess
                 ForEach(0..<CIRCLE_GUESS_COUNT){ column in
+                    
+                    
                     //this confusing mess is the computed variable of what we select from the ontapgesture from below
                     //it is watching the vm version of the userguesses and when the value is set to a certain color it updates automatically
+                    
                     if (vmLocal.userGuesses[row].isSelectable == true){
                         CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
                             .onTapGesture {
@@ -134,8 +147,6 @@ struct ContentView: View {
                         CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
                        
                     }
-                    
-                        
                 }
             }
         }
