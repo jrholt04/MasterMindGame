@@ -130,7 +130,7 @@ struct ContentView: View {
             HStack{
                 
                 //for each for each circle in the guess
-                ForEach(0..<CIRCLE_GUESS_COUNT){ column in
+                ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self){ column in
                     
                     
                     //this confusing mess is the computed variable of what we select from the ontapgesture from below
