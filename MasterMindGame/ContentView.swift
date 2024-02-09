@@ -39,7 +39,7 @@ struct ContentView: View {
             }
             .padding()
             
-            
+            //this is the selection row of colors 
             Text("choose a color: ")
                 .font(.system(size: 15))
                 .bold()

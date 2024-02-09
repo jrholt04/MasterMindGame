@@ -91,6 +91,7 @@ struct Model {
         }
     }
     
+    //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
         if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber != 0){
             userGuesses[currentRowNumber - 1].isSelectable = true
@@ -114,6 +115,7 @@ struct CircleOption: Identifiable {
     var isSelected: Bool
 }
 
+//this struct represnts one row of the guesses 
 struct Guess: Identifiable {
     var id: Int
     var isFullGuess: Bool

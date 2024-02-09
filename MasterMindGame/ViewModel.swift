@@ -44,14 +44,17 @@ class ViewModel: ObservableObject  {
         m.setGuessColor(row: row, col: col)
     }
     
+    //pass through var for current row 
     var currentRow: Int {
         return m.currentRowNumber
     }
     
+    //pass throuhg for the check for the full guess row
     func checkForFullGuess (row: Int){
         return m.checkForFullGuess(row: row)
     }
     
+    //pass through for the next row funciton
     func nextRow (){
         return m.nextRow()
     }
