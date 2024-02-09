@@ -21,3 +21,6 @@ let CIRCLE_GUESS_COUNT = 4
 //number of attempts at the correct color
 let MAX_ATTEMPTS = 10
 
+//test mode
+let TEST_MODE = true
+

@@ -42,8 +42,11 @@ struct Model {
         for i in 0..<CIRCLE_GUESS_COUNT{
             secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6))) )
         }
-        for i in 0..<CIRCLE_GUESS_COUNT{
-            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
+//        for i in 0..<CIRCLE_GUESS_COUNT{
+//            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
+//        }
+        if (TEST_MODE == true){
+            print("MODEL: we are in test mode ")
         }
         
     }
@@ -55,18 +58,18 @@ struct Model {
         }
         circleOptions[circleNumber].isSelected = true
         currentCircle = circleNumber
-        print("MODEL: model chose letter number \(circleNumber)")
+        //print("MODEL: model chose letter number \(circleNumber)")
     }
     
     //this is a function that sets the selected row to the row var in the model
     mutating func chooseRow(rowNumber: Int){
-        print("VIEWMODEL: choose row number \(rowNumber)")
+        //print("VIEWMODEL: choose row number \(rowNumber)")
     }
     
     //set a color in the user guess
     //set the current row and current selected cirlce to a specific color
     mutating func setGuessColor(row: Int, col: Int){
-        print("MODEL: setting color for \(col) in row \(row)")
+        //print("MODEL: setting color for \(col) in row \(row)")
         if (userGuesses[row].guessItem[col] == currentCircle){
             userGuesses[row].guessItem[col] = nil
         }
@@ -84,7 +87,7 @@ struct Model {
             }
             else {
                 userGuesses[row].isFullGuess = false
-                print("MODEL: this guess is not full")
+                //print("MODEL: this guess is not full")
                 break
                 
             }
@@ -93,20 +96,32 @@ struct Model {
     
     //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
-        if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber != 0){
+        if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
+            userGuesses[currentRowNumber].isSelectable = false
+        }
+        else {
             userGuesses[currentRowNumber - 1].isSelectable = true
             userGuesses[currentRowNumber].isSelectable = false
             currentRowNumber = currentRowNumber - 1
         }
-        if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
-            userGuesses[currentRowNumber].isSelectable = false
+        if(TEST_MODE == true){
+            setSecretCodeT()
+            print("MODEL: the test code is \(secretCode[0]), \(secretCode[1]), \(secretCode[2]), \(secretCode[3])")
         }
-            
     }
     
+    //set testmodeguees
+    //   this function sets the guess bead to the first user guess if test mode is enabled
+    mutating func setSecretCodeT() {
+        for i in 0..<CIRCLE_GUESS_COUNT {
+            if let tempColor = userGuesses[ MAX_ATTEMPTS - 1 ].guessItem[i] {
+                secretCode[i].colorOfBead = tempColor
+            }
+        }
+    }
 }
 
-
+//this is one bead in the selection row in the bottom
 struct CircleOption: Identifiable {
     // id is the index number in the array of colors
     var id : Int
@@ -123,12 +138,10 @@ struct Guess: Identifiable {
     
     //an array of optionals to hold the user guess
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
-    
 }
 
 //this struct uses a random number generator to store the value of the color in the corresponding array of colors
 struct SecretBead: Identifiable {
     var id: Int
     var colorOfBead: Int
-    
 }

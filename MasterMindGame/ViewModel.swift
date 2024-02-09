@@ -22,7 +22,7 @@ class ViewModel: ObservableObject  {
     
     //choose a row
     func chooseRow(rowNumber: Int){
-        print("VIEWMODEL: choose row number \(rowNumber)")
+        //print("VIEWMODEL: choose row number \(rowNumber)")
         m.chooseRow(rowNumber: rowNumber)
     }
     
@@ -35,12 +35,12 @@ class ViewModel: ObservableObject  {
     //this is the choose cirlce function that passes the onclick function to the model
     func chooseCircle(circleNumber: Int){
         m.chooseCircle(circleNumber: circleNumber)
-        print("VIEW MODEL: choose circle number \(circleNumber)")
+        //print("VIEW MODEL: choose circle number \(circleNumber)")
     }
     
     //this is the function to set the color of the selected cirlce to the choosen color
     func setGuessColor(row: Int, col: Int){
-        print("VIEW MODEL: set letter \(col) in row \(row)")
+        //print("VIEW MODEL: set letter \(col) in row \(row)")
         m.setGuessColor(row: row, col: col)
     }
     

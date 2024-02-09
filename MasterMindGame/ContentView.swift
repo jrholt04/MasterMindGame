@@ -21,19 +21,16 @@ struct ContentView: View {
     @ObservedObject var vm = ViewModel()
     
     var body: some View {
-        
-        
         VStack{
             // title of game
             Text("MASTERMIND")
                 .font(.system(size: 20))
                 .bold()
-            
             //these are the guesses 
             ForEach(vm.userGuesses){ guessNumber in
                 CircleGuessRow(row: guessNumber.id, vmLocal: vm)
                     .onTapGesture {
-                        print("VIEW: trying to select \(guessNumber.id)")
+                        //print("VIEW: trying to select \(guessNumber.id)")
                         vm.chooseRow(rowNumber: guessNumber.id)
                     }
             }
@@ -44,7 +41,6 @@ struct ContentView: View {
                 .font(.system(size: 15))
                 .bold()
             HStack {
-                
                 //foreach for all the circles in the selection row
                 ForEach(vm.circleOptions) {thisCircle in
                     CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected)
@@ -52,22 +48,19 @@ struct ContentView: View {
                         .onTapGesture(perform: {
                             //choose a circle
                             vm.chooseCircle(circleNumber: thisCircle.id)
-                            print("VIEW: trying to choose letter number \(thisCircle.id)")
+                            //print("VIEW: trying to choose letter number \(thisCircle.id)")
                         })
                 }
                 //enter key
                 makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
                     .onTapGesture{
                         if vm.userGuesses[vm.currentRow].isFullGuess {
-                            print("VIEW: current row is full -- on to next row")
+                            //print("VIEW: current row is full -- on to next row")
                             vm.nextRow()
                         }
                     }
-            }
-            .padding()
-            
-            
-            
+                }
+                .padding()
         }
     }
     
@@ -123,23 +116,18 @@ struct ContentView: View {
     //column is the circle in the guess and the row is what guess the user is on
     struct CircleGuessRow: View {
         var row: Int
-        
         @ObservedObject var vmLocal: ViewModel
-        
         var body: some View {
             HStack{
                 
                 //for each for each circle in the guess
                 ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self){ column in
-                    
-                    
                     //this confusing mess is the computed variable of what we select from the ontapgesture from below
                     //it is watching the vm version of the userguesses and when the value is set to a certain color it updates automatically
-                    
                     if (vmLocal.userGuesses[row].isSelectable == true){
                         CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
                             .onTapGesture {
-                                print("VIEW: setting circle number \(column) in row \(row)")
+                                //print("VIEW: setting circle number \(column) in row \(row)")
                                 vmLocal.setGuessColor(row: row, col: column)
                             }
                     }
@@ -151,8 +139,6 @@ struct ContentView: View {
             }
         }
     }
-    
-    
 }
 
 
