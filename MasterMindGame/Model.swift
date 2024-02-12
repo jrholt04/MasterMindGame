@@ -96,6 +96,7 @@ struct Model {
     
     //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
+        checkGuess()
         if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
             userGuesses[currentRowNumber].isSelectable = false
         }
@@ -118,6 +119,17 @@ struct Model {
                 secretCode[i].colorOfBead = tempColor
             }
         }
+    }
+    
+    //function to check if the guess the user has put in is correct and give fedbackbeads
+    mutating func checkGuess(){
+        var redBeads = 0
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            if (userGuesses[currentRowNumber].guessItem[i] == secretCode[i].colorOfBead){
+                redBeads = redBeads + 1
+            }
+        }
+        print("MODEL: red bead count \(redBeads)")
     }
 }
 
