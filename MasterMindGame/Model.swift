@@ -40,7 +40,7 @@ struct Model {
         //init the secret code array
         //the randomizer is from this link https://codewithchris.com/swift-random-number/
         for i in 0..<CIRCLE_GUESS_COUNT{
-            secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6))) )
+            secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6)), isChecked: false) )
         }
 //        for i in 0..<CIRCLE_GUESS_COUNT{
 //            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
@@ -124,12 +124,30 @@ struct Model {
     //function to check if the guess the user has put in is correct and give fedbackbeads
     mutating func checkGuess(){
         var redBeads = 0
+        var whiteBeads = 0
         for i in 0..<CIRCLE_GUESS_COUNT{
             if (userGuesses[currentRowNumber].guessItem[i] == secretCode[i].colorOfBead){
                 redBeads = redBeads + 1
+                secretCode[i].isChecked = true
             }
         }
         print("MODEL: red bead count \(redBeads)")
+        
+        //check for white beads
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            for j in 0..<CIRCLE_GUESS_COUNT{
+                if ((!secretCode[j].isChecked)&&(secretCode[j].colorOfBead == userGuesses[currentRowNumber].guessItem[i] )){
+                    whiteBeads = whiteBeads + 1
+                    secretCode[j].isChecked = true
+                }
+            }
+        }
+        
+        print("MODEL: white bead count \(whiteBeads)")
+        
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            secretCode[i].isChecked = false
+        }
     }
 }
 
@@ -148,6 +166,7 @@ struct Guess: Identifiable {
     var isFullGuess: Bool
     var isSelectable: Bool
     
+    
     //an array of optionals to hold the user guess
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
 }
@@ -156,4 +175,5 @@ struct Guess: Identifiable {
 struct SecretBead: Identifiable {
     var id: Int
     var colorOfBead: Int
+    var isChecked: Bool
 }
