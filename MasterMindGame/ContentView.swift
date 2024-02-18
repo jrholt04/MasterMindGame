@@ -28,11 +28,15 @@ struct ContentView: View {
                 .bold()
             //these are the guesses 
             ForEach(vm.userGuesses){ guessNumber in
-                CircleGuessRow(row: guessNumber.id, vmLocal: vm)
-                    .onTapGesture {
-                        //print("VIEW: trying to select \(guessNumber.id)")
-                        vm.chooseRow(rowNumber: guessNumber.id)
-                    }
+                HStack{
+                    feedBack(row: guessNumber.id, vm: vm)
+                    CircleGuessRow(row: guessNumber.id, vmLocal: vm)
+                        .onTapGesture {
+                            //print("VIEW: trying to select \(guessNumber.id)")
+                            vm.chooseRow(rowNumber: guessNumber.id)
+                        }
+                }
+                
             }
             .padding()
             
@@ -139,10 +143,62 @@ struct ContentView: View {
             }
         }
     }
+    
+    //struct for the feedback bead
+    struct feedBack: View {
+        var row: Int
+        @ObservedObject var vm: ViewModel
+        var body: some View {
+            ZStack{
+                RoundedRectangle(cornerRadius: 16.0)
+                    .fill(Color.black.gradient)
+                    .scaledToFit()
+                VStack{
+                    HStack{
+                        ForEach (0..<CIRCLE_GUESS_COUNT/2, id:\.self) {circle in
+                            ZStack{
+                                Circle()
+                                    .foregroundColor(getFeedBackColor(feadbackColor: vm.userGuesses[row].feedbackBeads[circle]))
+                                    .scaledToFit()
+//
+                            }
+                        }
+                    }
+                    .scaledToFit()
+                        
+                    HStack{
+                            ForEach (0..<CIRCLE_GUESS_COUNT/2, id:\.self) {circle in
+                                ZStack{
+                                    Circle()
+                                        .foregroundColor(getFeedBackColor(feadbackColor: vm.userGuesses[row].feedbackBeads[circle + 2 ]))
+                                        .scaledToFit()
+//
+                                }
+                            }
+                        }
+                    .scaledToFit()
+                    
+                }
+            }
+        }
+    }
 }
 
-
-
+//gets color of the bead 
+func getFeedBackColor (feadbackColor: feedbackBead?) -> Color {
+    if let feedback = feadbackColor{
+        switch feedback {
+        case .red:
+            return Color.red
+        case .white:
+            return Color.white
+        case .clear:
+            return Color.clear
+        
+        }
+    }
+    return Color.clear
+}
 
 
 

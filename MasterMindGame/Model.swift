@@ -107,7 +107,7 @@ struct Model {
         }
         if(TEST_MODE == true){
             setSecretCodeT()
-            print("MODEL: the test code is \(secretCode[0]), \(secretCode[1]), \(secretCode[2]), \(secretCode[3])")
+            //print("MODEL: the test code is \(secretCode[0]), \(secretCode[1]), \(secretCode[2]), \(secretCode[3])")
         }
     }
     
@@ -123,32 +123,32 @@ struct Model {
     
     //function to check if the guess the user has put in is correct and give fedbackbeads
     mutating func checkGuess(){
-        var redBeads = 0
-        var whiteBeads = 0
+       var feedBackBeadI = 0
         for i in 0..<CIRCLE_GUESS_COUNT{
             if (userGuesses[currentRowNumber].guessItem[i] == secretCode[i].colorOfBead){
-                redBeads = redBeads + 1
+                userGuesses[currentRowNumber].feedbackBeads[feedBackBeadI] = .red
                 secretCode[i].isChecked = true
+                feedBackBeadI = feedBackBeadI + 1
             }
         }
-        print("MODEL: red bead count \(redBeads)")
-        
+       
         //check for white beads
         for i in 0..<CIRCLE_GUESS_COUNT{
             for j in 0..<CIRCLE_GUESS_COUNT{
                 if ((!secretCode[j].isChecked)&&(secretCode[j].colorOfBead == userGuesses[currentRowNumber].guessItem[i] )){
-                    whiteBeads = whiteBeads + 1
+                    userGuesses[currentRowNumber].feedbackBeads[feedBackBeadI] = .white
                     secretCode[j].isChecked = true
+                    feedBackBeadI = feedBackBeadI + 1
                 }
             }
         }
-        
-        print("MODEL: white bead count \(whiteBeads)")
-        
+        print("MODEL: the feedback is \(userGuesses[currentRowNumber].feedbackBeads)")
+                
         for i in 0..<CIRCLE_GUESS_COUNT{
             secretCode[i].isChecked = false
         }
     }
+    
 }
 
 //this is one bead in the selection row in the bottom
@@ -165,7 +165,8 @@ struct Guess: Identifiable {
     var id: Int
     var isFullGuess: Bool
     var isSelectable: Bool
-    
+    //feedback bead array
+    var feedbackBeads: [feedbackBead?] = Array(repeating: .clear , count: CIRCLE_GUESS_COUNT)
     
     //an array of optionals to hold the user guess
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
@@ -176,4 +177,10 @@ struct SecretBead: Identifiable {
     var id: Int
     var colorOfBead: Int
     var isChecked: Bool
+}
+
+enum feedbackBead {
+    case red
+    case white
+    case clear
 }
