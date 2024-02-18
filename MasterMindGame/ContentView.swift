@@ -194,7 +194,6 @@ func getFeedBackColor (feadbackColor: feedbackBead?) -> Color {
             return Color.white
         case .clear:
             return Color.clear
-        
         }
     }
     return Color.clear

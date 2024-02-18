@@ -126,6 +126,7 @@ struct Model {
        var feedBackBeadI = 0
         for i in 0..<CIRCLE_GUESS_COUNT{
             if (userGuesses[currentRowNumber].guessItem[i] == secretCode[i].colorOfBead){
+                userGuesses[currentRowNumber].isChecked[i] = true
                 userGuesses[currentRowNumber].feedbackBeads[feedBackBeadI] = .red
                 secretCode[i].isChecked = true
                 feedBackBeadI = feedBackBeadI + 1
@@ -135,7 +136,8 @@ struct Model {
         //check for white beads
         for i in 0..<CIRCLE_GUESS_COUNT{
             for j in 0..<CIRCLE_GUESS_COUNT{
-                if ((!secretCode[j].isChecked)&&(secretCode[j].colorOfBead == userGuesses[currentRowNumber].guessItem[i] )){
+                if ((!userGuesses[currentRowNumber].isChecked[i])&&(!secretCode[j].isChecked)&&(secretCode[j].colorOfBead == userGuesses[currentRowNumber].guessItem[i] )){
+                    userGuesses[currentRowNumber].isChecked[i] = true
                     userGuesses[currentRowNumber].feedbackBeads[feedBackBeadI] = .white
                     secretCode[j].isChecked = true
                     feedBackBeadI = feedBackBeadI + 1
@@ -170,6 +172,8 @@ struct Guess: Identifiable {
     
     //an array of optionals to hold the user guess
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
+    //parrellel array to mark if this index had been checked or not
+    var isChecked: [Bool] = Array(repeating: false, count: CIRCLE_GUESS_COUNT)
 }
 
 //this struct uses a random number generator to store the value of the color in the corresponding array of colors
