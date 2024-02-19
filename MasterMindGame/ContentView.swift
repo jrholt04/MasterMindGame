@@ -90,12 +90,12 @@ struct ContentView: View {
     //view for a single circle of a users guess
     struct CircleGuessView: View{
         var CircleId: Int?
-        
+        var outlineWidth: Int
         var body: some View{
             if let CircleNumber = CircleId{
                 ZStack{
                     Circle()
-                        .stroke(lineWidth: 6 )
+                        .stroke(lineWidth: CGFloat(outlineWidth) )
                         .foregroundColor(Color.black)
                     //main circle
                     Circle()
@@ -106,7 +106,7 @@ struct ContentView: View {
             else {
                 ZStack{
                     Circle()
-                        .stroke(lineWidth: 6 )
+                        .stroke(lineWidth: CGFloat(outlineWidth) )
                         .foregroundColor(Color.black)
                     //main circle
                     Circle()
@@ -129,14 +129,14 @@ struct ContentView: View {
                     //this confusing mess is the computed variable of what we select from the ontapgesture from below
                     //it is watching the vm version of the userguesses and when the value is set to a certain color it updates automatically
                     if (vmLocal.userGuesses[row].isSelectable == true){
-                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
+                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: 12)
                             .onTapGesture {
                                 //print("VIEW: setting circle number \(column) in row \(row)")
                                 vmLocal.setGuessColor(row: row, col: column)
                             }
                     }
                     else{
-                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column])
+                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: 6)
                        
                     }
                 }
