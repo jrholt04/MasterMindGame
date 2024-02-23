@@ -15,6 +15,10 @@ class ViewModel: ObservableObject  {
     //makes the model viewable to the view model
     @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
+    func restartGame() {
+        m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
+    }
+    
     //get all of the users guesses
     var userGuesses: Array<Guess> {
        return m.userGuesses
@@ -40,8 +44,13 @@ class ViewModel: ObservableObject  {
     
     //this is the function to set the color of the selected cirlce to the choosen color
     func setGuessColor(row: Int, col: Int){
-        //print("VIEW MODEL: set letter \(col) in row \(row)")
-        m.setGuessColor(row: row, col: col)
+        if (gameState == .playing){
+            //print("VIEW MODEL: set letter \(col) in row \(row)")
+            m.setGuessColor(row: row, col: col)
+        }
+        else {
+            print("VIEW MODEL game is over ")
+        }
     }
     
     //pass through var for current row 
@@ -57,5 +66,15 @@ class ViewModel: ObservableObject  {
     //pass through for the next row funciton
     func nextRow (){
         return m.nextRow()
+    }
+    
+    //do we have a winner
+    var winner: Bool{
+        return m.gameState == .won
+    }
+    
+    //get the game state
+    var gameState: GameState{
+       return  m.gameState
     }
 }

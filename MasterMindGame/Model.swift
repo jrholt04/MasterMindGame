@@ -9,7 +9,18 @@
 
 import Foundation
 
+//current state of the game
+enum GameState {
+    case playing
+    case won
+    case lost
+}
+
 struct Model {
+    
+    //is the game over?
+    // did the user win
+    var gameState: GameState = .playing
     
     //our variables for the model
     // this is an array that represents the selection colors at the bottom of the screen
@@ -42,9 +53,10 @@ struct Model {
         for i in 0..<CIRCLE_GUESS_COUNT{
             secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6)), isChecked: false) )
         }
-//        for i in 0..<CIRCLE_GUESS_COUNT{
-//            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
-//        }
+        print("MODEL The Regular Secret code is ")
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
+        }
         if (TEST_MODE == true){
             print("MODEL: we are in test mode ")
         }
@@ -97,17 +109,40 @@ struct Model {
     //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
         checkGuess()
+        //this is the base case for the last row
         if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
             userGuesses[currentRowNumber].isSelectable = false
+            if (userGuesses[currentRowNumber].isRight()){
+                //we Have a winner
+                gameState = .won
+                print ("MODEL the user has won ")
+                userGuesses[currentRowNumber].isSelectable = false
+            }
+            else {
+                gameState = .lost
+                print ("MODEL you lost Bozo ")
+                userGuesses[currentRowNumber].isSelectable = false
+            }
         }
+        //going over a regular row
         else {
-            userGuesses[currentRowNumber - 1].isSelectable = true
-            userGuesses[currentRowNumber].isSelectable = false
-            currentRowNumber = currentRowNumber - 1
+            if (userGuesses[currentRowNumber].isRight()){
+                gameState = .won
+                userGuesses[currentRowNumber].isSelectable = false
+                
+                print ("MODEL the user has won")
+            }
+            else{
+                userGuesses[currentRowNumber - 1].isSelectable = true
+                userGuesses[currentRowNumber].isSelectable = false
+                currentRowNumber = currentRowNumber - 1
+                
+            }
         }
         if(TEST_MODE == true){
             setSecretCodeT()
-            //print("MODEL: the test code is \(secretCode[0]), \(secretCode[1]), \(secretCode[2]), \(secretCode[3])")
+            print("MODEL the TESTING secret code is: ")
+            print("MODEL: the test code is \(secretCode[0]), \(secretCode[1]), \(secretCode[2]), \(secretCode[3])")
         }
     }
     
@@ -144,6 +179,8 @@ struct Model {
                 }
             }
         }
+        
+        
         print("MODEL: the feedback is \(userGuesses[currentRowNumber].feedbackBeads)")
                 
         for i in 0..<CIRCLE_GUESS_COUNT{
@@ -174,6 +211,18 @@ struct Guess: Identifiable {
     var guessItem: [Int?] = Array(repeating: nil, count: CIRCLE_GUESS_COUNT)
     //parrellel array to mark if this index had been checked or not
     var isChecked: [Bool] = Array(repeating: false, count: CIRCLE_GUESS_COUNT)
+    
+    //did the user win ie is the guess right
+    func isRight() -> Bool{
+        for i in 0..<CIRCLE_GUESS_COUNT {
+            if feedbackBeads[i] != .red {
+                return false
+            }
+            
+        }
+        return true
+    }
+    
 }
 
 //this struct uses a random number generator to store the value of the color in the corresponding array of colors

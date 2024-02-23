@@ -27,3 +27,5 @@ let TEST_MODE = true
 //feedbackbead
 let FEEDBACK = 2
 
+//text size
+let TEXTSIZE = 20

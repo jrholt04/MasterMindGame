@@ -24,9 +24,12 @@ struct ContentView: View {
         VStack{
             // title of game
             Text("MASTERMIND")
-                .font(.system(size: 20))
+                .font(.system(size: CGFloat(TEXTSIZE)))
                 .bold()
-            //these are the guesses 
+                .onTapGesture {
+                    vm.restartGame()
+                }
+            //these are the guesses
             ForEach(vm.userGuesses){ guessNumber in
                 HStack{
                     feedBack(row: guessNumber.id, vm: vm)
@@ -41,9 +44,20 @@ struct ContentView: View {
             .padding()
             
             //this is the selection row of colors 
-            Text("choose a color: ")
-                .font(.system(size: 15))
-                .bold()
+            switch vm.gameState{
+            case .playing:
+                Text("choose a color: ")
+                    .font(.system(size: CGFloat(TEXTSIZE)))
+                    .bold()
+            case .won:
+                Text("You won: ")
+                    .font(.system(size: CGFloat(TEXTSIZE)))
+                    .bold()
+            case .lost:
+                Text("You Lost ")
+                    .font(.system(size: CGFloat(TEXTSIZE)))
+                    .bold()
+            }
             HStack {
                 //foreach for all the circles in the selection row
                 ForEach(vm.circleOptions) {thisCircle in
@@ -65,6 +79,31 @@ struct ContentView: View {
                     }
                 }
                 .padding()
+        }
+        .overlay(gameOverOverlay)
+    }
+    
+    //game over overlay this displays the state of the game whne it is over
+    @ViewBuilder var gameOverOverlay: some View {
+        switch vm.gameState {
+        case .playing:
+            Text("")
+                .bold()
+                .foregroundColor(.clear)
+                .background(.clear)
+                .font(.system(size: 86))
+        case .won:
+            Text("YOU WON")
+                .bold()
+                .foregroundColor(.black)
+                .background(.green)
+                .font(.system(size: 86))
+        case .lost:
+            Text("GAME OVER")
+                .bold()
+                .foregroundColor(.black)
+                .background(.red)
+                .font(.system(size: 86))
         }
     }
     
