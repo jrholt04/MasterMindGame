@@ -19,6 +19,11 @@ class ViewModel: ObservableObject  {
         m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     }
     
+    //var for the secret code
+    var secretCode: Array<SecretBead>{
+        return m.secretCode
+    }
+    
     //get all of the users guesses
     var userGuesses: Array<Guess> {
        return m.userGuesses

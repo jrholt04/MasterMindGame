@@ -99,11 +99,20 @@ struct ContentView: View {
                 .background(.green)
                 .font(.system(size: 86))
         case .lost:
-            Text("GAME OVER")
-                .bold()
-                .foregroundColor(.black)
-                .background(.red)
-                .font(.system(size: 86))
+            VStack{
+                Text("GAME OVER")
+                    .bold()
+                    .foregroundColor(.black)
+                    .font(.system(size: 86))
+                HStack{
+                    ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self) { i in
+                        CircleGuessView(CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE)
+                    }
+                    .padding()
+                }
+            }
+            .background(.red)
+            
         }
     }
     

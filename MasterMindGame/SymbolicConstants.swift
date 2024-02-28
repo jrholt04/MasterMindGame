@@ -29,3 +29,6 @@ let FEEDBACK = 2
 
 //text size
 let TEXTSIZE = 20
+
+//outline width for a standard bead
+let OUTLINESIZE = 12
