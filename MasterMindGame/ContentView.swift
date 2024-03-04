@@ -34,14 +34,9 @@ struct ContentView: View {
                 HStack{
                     feedBack(row: guessNumber.id, vm: vm)
                     CircleGuessRow(row: guessNumber.id, vmLocal: vm)
-                        .onTapGesture {
-                            //print("VIEW: trying to select \(guessNumber.id)")
-                            vm.chooseRow(rowNumber: guessNumber.id)
-                        }
                 }
                 
             }
-            .padding()
             
             //this is the selection row of colors 
             switch vm.gameState{
@@ -65,20 +60,17 @@ struct ContentView: View {
                     //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
                         .onTapGesture(perform: {
                             //choose a circle
-                            vm.chooseCircle(circleNumber: thisCircle.id)
-                            //print("VIEW: trying to choose letter number \(thisCircle.id)")
-                        })
+                            vm.chooseCircle(circleNumber: thisCircle.id)                        })
                 }
                 //enter key
                 makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
                     .onTapGesture{
                         if vm.userGuesses[vm.currentRow].isFullGuess {
-                            //print("VIEW: current row is full -- on to next row")
                             vm.nextRow()
                         }
                     }
                 }
-                .padding()
+                
         }
         .overlay(gameOverOverlay)
     }
@@ -91,28 +83,43 @@ struct ContentView: View {
                 .bold()
                 .foregroundColor(.clear)
                 .background(.clear)
-                .font(.system(size: 86))
+                .font(.system(size: CGFloat(TEXTSIZE)))
         case .won:
-            Text("YOU WON")
-                .bold()
-                .foregroundColor(.black)
-                .background(.green)
-                .font(.system(size: 86))
-        case .lost:
-            VStack{
-                Text("GAME OVER")
+            ZStack{
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .fill(Color.green)
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .stroke(lineWidth: LINE_WIDTH)
+                    .foregroundColor(Color.black)
+                Text("YOU WON")
                     .bold()
                     .foregroundColor(.black)
-                    .font(.system(size: 86))
-                HStack{
-                    ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self) { i in
-                        CircleGuessView(CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE)
+                    .font(.system(size: CGFloat(TEXTSIZE * 2)))
+            }
+            .scaledToFit()
+            
+        case .lost:
+            ZStack{
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .fill(Color.red)
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .stroke(lineWidth: LINE_WIDTH)
+                    .foregroundColor(Color.black)
+                VStack{
+                    Text("GAME OVER")
+                        .bold()
+                        .foregroundColor(.black)
+                        .font(.system(size: CGFloat(TEXTSIZE)))
+                    HStack{
+                        ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self) { i in
+                            CircleGuessView(CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE)
+                        }
+                        .padding()
+                        .scaledToFit()
                     }
-                    .padding()
                 }
             }
-            .background(.red)
-            
+            .scaledToFit()
         }
     }
     
@@ -125,7 +132,7 @@ struct ContentView: View {
             ZStack{
                 //background circle
                 Circle()
-                    .stroke(lineWidth: isSelected ? 12 : 6 )
+                    .stroke(lineWidth: isSelected ? CGFloat(OUTLINESIZE) : CGFloat(OUTLINESIZE/2) )
                     .foregroundColor(Color.black)
                 //main circle
                 Circle()
@@ -174,17 +181,14 @@ struct ContentView: View {
                 
                 //for each for each circle in the guess
                 ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self){ column in
-                    //this confusing mess is the computed variable of what we select from the ontapgesture from below
-                    //it is watching the vm version of the userguesses and when the value is set to a certain color it updates automatically
                     if (vmLocal.userGuesses[row].isSelectable == true){
-                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: 12)
+                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: OUTLINESIZE)
                             .onTapGesture {
-                                //print("VIEW: setting circle number \(column) in row \(row)")
                                 vmLocal.setGuessColor(row: row, col: column)
                             }
                     }
                     else{
-                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: 6)
+                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: (OUTLINESIZE/2))
                        
                     }
                 }
@@ -198,7 +202,7 @@ struct ContentView: View {
         @ObservedObject var vm: ViewModel
         var body: some View {
             ZStack{
-                RoundedRectangle(cornerRadius: 16.0)
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                     .fill(Color.black.gradient)
                     .scaledToFit()
                 VStack{
@@ -230,6 +234,7 @@ struct ContentView: View {
             }
         }
     }
+    
 }
 
 //gets color of the bead 

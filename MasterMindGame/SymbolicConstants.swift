@@ -22,13 +22,19 @@ let CIRCLE_GUESS_COUNT = 4
 let MAX_ATTEMPTS = 10
 
 //test mode
-let TEST_MODE = true
+let TEST_MODE = false
 
 //feedbackbead
 let FEEDBACK = 2
 
 //text size
-let TEXTSIZE = 20
+let TEXTSIZE = 40
 
 //outline width for a standard bead
 let OUTLINESIZE = 12
+
+//corner radius for rounded rectalge
+let CORNER_RADDUIS = 16
+
+//line width
+let LINE_WIDTH = 4.0

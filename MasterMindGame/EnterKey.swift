@@ -25,16 +25,16 @@ struct EnterKey: View {
 
 func makeEnterKeyBody(state: EnterKeyStates) -> some View {
     return ZStack{
-        RoundedRectangle(cornerRadius: 16.0)
+        RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
             .fill(Color.black.gradient)
             .scaledToFit()
-        RoundedRectangle(cornerRadius: 16.0)
-            .stroke(lineWidth: 4.0)
+        RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+            .stroke(lineWidth: CGFloat(LINE_WIDTH))
             .foregroundColor(state == .enabled ? Color.red : .clear)
             .scaledToFit()
         Text("Enter")
             .bold()
-            .font(.system(size: 20))
+            .font(.system(size: CGFloat(TEXTSIZE/2)))
     }
     .foregroundColor(state == .enabled ? Color.white : .clear)
 }

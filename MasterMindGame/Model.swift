@@ -56,9 +56,11 @@ struct Model {
         print("MODEL The Regular Secret code is ")
         for i in 0..<CIRCLE_GUESS_COUNT{
             print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
+            print()
         }
         if (TEST_MODE == true){
             print("MODEL: we are in test mode ")
+            print()
         }
         
     }
@@ -70,18 +72,11 @@ struct Model {
         }
         circleOptions[circleNumber].isSelected = true
         currentCircle = circleNumber
-        //print("MODEL: model chose letter number \(circleNumber)")
-    }
-    
-    //this is a function that sets the selected row to the row var in the model
-    mutating func chooseRow(rowNumber: Int){
-        //print("VIEWMODEL: choose row number \(rowNumber)")
     }
     
     //set a color in the user guess
     //set the current row and current selected cirlce to a specific color
     mutating func setGuessColor(row: Int, col: Int){
-        //print("MODEL: setting color for \(col) in row \(row)")
         if (userGuesses[row].guessItem[col] == currentCircle){
             userGuesses[row].guessItem[col] = nil
         }
@@ -99,7 +94,6 @@ struct Model {
             }
             else {
                 userGuesses[row].isFullGuess = false
-                //print("MODEL: this guess is not full")
                 break
                 
             }
@@ -232,6 +226,7 @@ struct SecretBead: Identifiable {
     var isChecked: Bool
 }
 
+//enum for the state of the feedback beads 
 enum feedbackBead {
     case red
     case white

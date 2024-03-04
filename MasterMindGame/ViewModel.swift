@@ -29,13 +29,6 @@ class ViewModel: ObservableObject  {
        return m.userGuesses
     }
     
-    //choose a row
-    func chooseRow(rowNumber: Int){
-        //print("VIEWMODEL: choose row number \(rowNumber)")
-        m.chooseRow(rowNumber: rowNumber)
-    }
-    
-    
     //this allows the view model to present the circleOptions array to the view
     var circleOptions: Array<CircleOption>{
         return m.circleOptions
