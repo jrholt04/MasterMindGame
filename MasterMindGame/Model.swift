@@ -35,6 +35,7 @@ struct Model {
     
     //initiazlizes all of the circles in the array
     init (numberOfCircleOption: Int){
+        playSound(sound: "background", type: "mp3")
         circleOptions = Array<CircleOption>()
         secretCode = Array<SecretBead>()
         for circleIndex in 0..<numberOfCircleOption {
@@ -111,6 +112,7 @@ struct Model {
                 gameState = .won
                 print ("MODEL the user has won ")
                 userGuesses[currentRowNumber].isSelectable = false
+                playSound(sound: "chime", type: "mp3")
             }
             else {
                 gameState = .lost
@@ -123,7 +125,7 @@ struct Model {
             if (userGuesses[currentRowNumber].isRight()){
                 gameState = .won
                 userGuesses[currentRowNumber].isSelectable = false
-                
+                playSound(sound: "chime", type: "mp3")
                 print ("MODEL the user has won")
             }
             else{

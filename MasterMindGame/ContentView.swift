@@ -20,15 +20,21 @@ struct ContentView: View {
     //viewable classs view model
     @ObservedObject var vm = ViewModel()
     
+    //haptic feedback
+    let haptic = UINotificationFeedbackGenerator()
+    
     var body: some View {
+       
         VStack{
+            
             // title of game
             Text("MASTERMIND")
                 .font(.system(size: CGFloat(TEXTSIZE)))
                 .bold()
                 .onTapGesture {
                     vm.restartGame()
-                }
+                    haptic.notificationOccurred(.success)
+            }
             //these are the guesses
             ForEach(vm.userGuesses){ guessNumber in
                 HStack{
@@ -60,13 +66,16 @@ struct ContentView: View {
                     //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
                         .onTapGesture(perform: {
                             //choose a circle
-                            vm.chooseCircle(circleNumber: thisCircle.id)                        })
+                            vm.chooseCircle(circleNumber: thisCircle.id)
+                            haptic.notificationOccurred(.success)
+                        })
                 }
                 //enter key
                 makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
                     .onTapGesture{
                         if vm.userGuesses[vm.currentRow].isFullGuess {
                             vm.nextRow()
+                            haptic.notificationOccurred(.success)
                         }
                     }
                 }
@@ -97,6 +106,7 @@ struct ContentView: View {
                     .font(.system(size: CGFloat(TEXTSIZE * 2)))
             }
             .scaledToFit()
+            
             
         case .lost:
             ZStack{

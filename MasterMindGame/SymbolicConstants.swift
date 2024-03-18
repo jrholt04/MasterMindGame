@@ -22,7 +22,7 @@ let CIRCLE_GUESS_COUNT = 4
 let MAX_ATTEMPTS = 10
 
 //test mode
-let TEST_MODE = false
+let TEST_MODE = true
 
 //feedbackbead
 let FEEDBACK = 2
