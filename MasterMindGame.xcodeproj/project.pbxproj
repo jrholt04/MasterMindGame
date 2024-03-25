@@ -18,6 +18,8 @@
 		61B361E62B571ECB004FBCE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B361E52B571ECB004FBCE8 /* ContentView.swift */; };
 		61B361E82B571ECC004FBCE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B361E72B571ECC004FBCE8 /* Assets.xcassets */; };
 		61B361EC2B571ECC004FBCE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B361EB2B571ECC004FBCE8 /* Preview Assets.xcassets */; };
+		61BD75F32BB1FC5B0096C5B5 /* EffectsLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 61BD75F22BB1FC5B0096C5B5 /* EffectsLibrary */; };
+		61BD75F52BB1FED20096C5B5 /* confetiCannon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD75F42BB1FED20096C5B5 /* confetiCannon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,7 @@
 		61B361E72B571ECC004FBCE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61B361E92B571ECC004FBCE8 /* MasterMindGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MasterMindGame.entitlements; sourceTree = "<group>"; };
 		61B361EB2B571ECC004FBCE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		61BD75F42BB1FED20096C5B5 /* confetiCannon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = confetiCannon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61BD75F32BB1FC5B0096C5B5 /* EffectsLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +86,7 @@
 				6190A9542B5DE7DE006D533A /* Model.swift */,
 				6190A9582B746BC5006D533A /* EnterKey.swift */,
 				6190A9522B5DE463006D533A /* SymbolicConstants.swift */,
+				61BD75F42BB1FED20096C5B5 /* confetiCannon.swift */,
 				616FA2352BA8C97D00B448B4 /* mp3 */,
 				61B361E72B571ECC004FBCE8 /* Assets.xcassets */,
 				61B361E92B571ECC004FBCE8 /* MasterMindGame.entitlements */,
@@ -114,6 +119,9 @@
 			dependencies = (
 			);
 			name = MasterMindGame;
+			packageProductDependencies = (
+				61BD75F22BB1FC5B0096C5B5 /* EffectsLibrary */,
+			);
 			productName = MasterMindGame;
 			productReference = 61B361E02B571ECB004FBCE8 /* MasterMindGame.app */;
 			productType = "com.apple.product-type.application";
@@ -142,6 +150,9 @@
 				Base,
 			);
 			mainGroup = 61B361D72B571ECB004FBCE8;
+			packageReferences = (
+				61BD75F12BB1FC5B0096C5B5 /* XCRemoteSwiftPackageReference "effects-library" */,
+			);
 			productRefGroup = 61B361E12B571ECB004FBCE8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,6 +184,7 @@
 				6190A9592B746BC5006D533A /* EnterKey.swift in Sources */,
 				616FA2342BA8C14100B448B4 /* PlaySound.swift in Sources */,
 				6190A9572B5DF0AA006D533A /* ViewModel.swift in Sources */,
+				61BD75F52BB1FED20096C5B5 /* confetiCannon.swift in Sources */,
 				61B361E62B571ECB004FBCE8 /* ContentView.swift in Sources */,
 				61B361E42B571ECB004FBCE8 /* MasterMindGameApp.swift in Sources */,
 				6190A9532B5DE463006D533A /* SymbolicConstants.swift in Sources */,
@@ -393,6 +405,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		61BD75F12BB1FC5B0096C5B5 /* XCRemoteSwiftPackageReference "effects-library" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/effects-library";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		61BD75F22BB1FC5B0096C5B5 /* EffectsLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61BD75F12BB1FC5B0096C5B5 /* XCRemoteSwiftPackageReference "effects-library" */;
+			productName = EffectsLibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 61B361D82B571ECB004FBCE8 /* Project object */;
 }

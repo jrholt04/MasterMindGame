@@ -8,10 +8,11 @@
 //  VIEW
 //
 //  Created by Jackson Holt on 1/16/24.
-// this is the view file for what the master mind game will look like
+//  this is the view file for what the master mind game will look like
 //
 
 import SwiftUI
+import EffectsLibrary
 
 //array of colors for the circles
 
@@ -24,62 +25,65 @@ struct ContentView: View {
     let haptic = UINotificationFeedbackGenerator()
     
     var body: some View {
-       
-        VStack{
-            
-            // title of game
-            Text("MASTERMIND")
-                .font(.system(size: CGFloat(TEXTSIZE)))
-                .bold()
-                .onTapGesture {
-                    vm.restartGame()
-                    haptic.notificationOccurred(.success)
-            }
-            //these are the guesses
-            ForEach(vm.userGuesses){ guessNumber in
-                HStack{
-                    feedBack(row: guessNumber.id, vm: vm)
-                    CircleGuessRow(row: guessNumber.id, vmLocal: vm)
-                }
+        ZStack{
+            VStack{
                 
-            }
-            
-            //this is the selection row of colors 
-            switch vm.gameState{
-            case .playing:
-                Text("choose a color: ")
+                // title of game
+                Text("MASTERMIND")
                     .font(.system(size: CGFloat(TEXTSIZE)))
                     .bold()
-            case .won:
-                Text("You won: ")
-                    .font(.system(size: CGFloat(TEXTSIZE)))
-                    .bold()
-            case .lost:
-                Text("You Lost ")
-                    .font(.system(size: CGFloat(TEXTSIZE)))
-                    .bold()
-            }
-            HStack {
-                //foreach for all the circles in the selection row
-                ForEach(vm.circleOptions) {thisCircle in
-                    CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected)
-                    //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
-                        .onTapGesture(perform: {
-                            //choose a circle
-                            vm.chooseCircle(circleNumber: thisCircle.id)
-                            haptic.notificationOccurred(.success)
-                        })
-                }
-                //enter key
-                makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
-                    .onTapGesture{
-                        if vm.userGuesses[vm.currentRow].isFullGuess {
-                            vm.nextRow()
-                            haptic.notificationOccurred(.success)
-                        }
+                //these are the guesses
+                ForEach(vm.userGuesses){ guessNumber in
+                    HStack{
+                        feedBack(row: guessNumber.id, vm: vm)
+                        CircleGuessRow(row: guessNumber.id, vmLocal: vm)
                     }
+                    
                 }
                 
+                //this is the selection row of colors
+                switch vm.gameState{
+                case .playing:
+                    Text("choose a color: ")
+                        .font(.system(size: CGFloat(TEXTSIZE)))
+                        .bold()
+                case .won:
+                    Text("You won: ")
+                        .font(.system(size: CGFloat(TEXTSIZE)))
+                        .bold()
+                case .lost:
+                    Text("You Lost ")
+                        .font(.system(size: CGFloat(TEXTSIZE)))
+                        .bold()
+                }
+                HStack {
+                    //foreach for all the circles in the selection row
+                    ForEach(vm.circleOptions) {thisCircle in
+                        CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected)
+                        //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
+                            .onTapGesture(perform: {
+                                //choose a circle
+                                vm.chooseCircle(circleNumber: thisCircle.id)
+                                haptic.notificationOccurred(.success)
+                            })
+                    }
+                    //enter key
+                    makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
+                        .onTapGesture{
+                            if vm.userGuesses[vm.currentRow].isFullGuess {
+                                vm.nextRow()
+                                haptic.notificationOccurred(.success)
+                            }
+                        }
+                }
+            }
+            //if you win play the confetti else play the loss confetti
+            if (vm.gameState == .won){
+                confetiCannon()
+            }
+            else if (vm.gameState == .lost){
+                confettiLost()
+            }
         }
         .overlay(gameOverOverlay)
     }
@@ -106,6 +110,11 @@ struct ContentView: View {
                     .font(.system(size: CGFloat(TEXTSIZE * 2)))
             }
             .scaledToFit()
+            .padding()
+            .onTapGesture {
+                vm.restartGame()
+                haptic.notificationOccurred(.success)
+            }
             
             
         case .lost:
@@ -130,6 +139,11 @@ struct ContentView: View {
                 }
             }
             .scaledToFit()
+            .padding()
+            .onTapGesture {
+                vm.restartGame()
+                haptic.notificationOccurred(.success)
+            }
         }
     }
     
