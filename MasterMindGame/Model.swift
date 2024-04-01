@@ -22,6 +22,9 @@ struct Model {
     // did the user win
     var gameState: GameState = .playing
     
+    //saved data
+    var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: CIRCLE_GUESS_COUNT)
+    
     //our variables for the model
     // this is an array that represents the selection colors at the bottom of the screen
     var circleOptions: Array<CircleOption>
@@ -104,6 +107,14 @@ struct Model {
     //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
         checkGuess()
+        //this is a test for the saving of the data for the array of stats 
+        if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
+            var stats = statsArray
+            stats[0] += 1
+            UserDefaults.standard.set(stats, forKey: "stats")
+        }
+        
+        //print("this is the value of stat[0] \(stats[0])")
         //this is the base case for the last row
         if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
             userGuesses[currentRowNumber].isSelectable = false
@@ -183,6 +194,8 @@ struct Model {
             secretCode[i].isChecked = false
         }
     }
+    
+    
     
 }
 

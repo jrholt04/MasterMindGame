@@ -75,4 +75,11 @@ class ViewModel: ObservableObject  {
     var gameState: GameState{
        return  m.gameState
     }
+    
+    var stats: [Int] {
+        if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
+            return statsArray
+        }
+        return Array(repeating: 0, count: CIRCLE_GUESS_COUNT)
+    }
 }

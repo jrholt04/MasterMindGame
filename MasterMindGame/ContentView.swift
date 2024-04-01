@@ -75,6 +75,7 @@ struct ContentView: View {
                                 haptic.notificationOccurred(.success)
                             }
                         }
+                    Text("\(vm.stats[0])")
                 }
             }
             //if you win play the confetti else play the loss confetti
