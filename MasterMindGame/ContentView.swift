@@ -21,6 +21,9 @@ struct ContentView: View {
     //viewable classs view model
     @ObservedObject var vm = ViewModel()
     
+    @AppStorage ("totalGames") var totalGames: Int = 0
+    @AppStorage ("winPercentage") var winPercentage: Int = 0
+    @AppStorage ("wonGames") var wonGames : Int = 0
     //haptic feedback
     let haptic = UINotificationFeedbackGenerator()
     
@@ -75,7 +78,6 @@ struct ContentView: View {
                                 haptic.notificationOccurred(.success)
                             }
                         }
-                    Text("\(vm.stats[0])")
                 }
             }
             //if you win play the confetti else play the loss confetti
@@ -105,10 +107,13 @@ struct ContentView: View {
                 RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                     .stroke(lineWidth: LINE_WIDTH)
                     .foregroundColor(Color.black)
-                Text("YOU WON")
-                    .bold()
-                    .foregroundColor(.black)
-                    .font(.system(size: CGFloat(TEXTSIZE * 2)))
+                VStack{
+                    Text("YOU WON")
+                        .bold()
+                        .foregroundColor(.black)
+                        .font(.system(size: CGFloat(TEXTSIZE * 2)))
+                    StatsView(totalGames: totalGames, gamesWon: wonGames, vm: vm)
+                }
             }
             .scaledToFit()
             .padding()

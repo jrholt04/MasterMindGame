@@ -28,6 +28,7 @@ struct Model {
     //saved data
     var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
     
+    
     //our variables for the model
     // this is an array that represents the selection colors at the bottom of the screen
     var circleOptions: Array<CircleOption>
@@ -204,7 +205,11 @@ struct Model {
     
     mutating func resetStat(){
         for i in 0..<MAX_ATTEMPTS{
-            
+            if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
+                var stats = statsArray
+                stats[i] = 0
+                UserDefaults.standard.set(stats, forKey: "stats")
+            }
         }
     }
     

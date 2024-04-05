@@ -82,4 +82,8 @@ class ViewModel: ObservableObject  {
         }
         return Array(repeating: 0, count: CIRCLE_GUESS_COUNT)
     }
+    
+    func resetStats(){
+        m.resetStat()
+    }
 }
