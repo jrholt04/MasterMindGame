@@ -26,7 +26,7 @@ struct Model {
     var gameState: GameState = .playing
     
     //saved data
-    var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: CIRCLE_GUESS_COUNT)
+    var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
     
     //our variables for the model
     // this is an array that represents the selection colors at the bottom of the screen
@@ -111,8 +111,6 @@ struct Model {
     mutating func nextRow(){
         checkGuess()
         updateStats()
-        
-        
         //print("this is the value of stat[0] \(stats[0])")
         //this is the base case for the last row
         if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
@@ -195,7 +193,19 @@ struct Model {
     }
     
     mutating func updateStats(){
-        
+        if (gameState == .won){
+            if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
+                var stats = statsArray
+                stats[currentRowNumber] += 1
+                UserDefaults.standard.set(stats, forKey: "stats")
+            }
+        }
+    }
+    
+    mutating func resetStat(){
+        for i in 0..<MAX_ATTEMPTS{
+            
+        }
     }
     
     
