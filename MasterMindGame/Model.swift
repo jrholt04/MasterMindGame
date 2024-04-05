@@ -6,6 +6,9 @@
 //
 //  Created by Jackson Holt on 1/21/24.
 //
+// this is the sources for the userDefualts
+//https://www.youtube.com/watch?v=OLyGYcSw9Bs
+//https://www.youtube.com/watch?v=vDbFH9D6BSA
 
 import Foundation
 
@@ -107,12 +110,8 @@ struct Model {
     //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
         checkGuess()
-        //this is a test for the saving of the data for the array of stats 
-        if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
-            var stats = statsArray
-            stats[0] += 1
-            UserDefaults.standard.set(stats, forKey: "stats")
-        }
+        updateStats()
+        
         
         //print("this is the value of stat[0] \(stats[0])")
         //this is the base case for the last row
@@ -193,6 +192,10 @@ struct Model {
         for i in 0..<CIRCLE_GUESS_COUNT{
             secretCode[i].isChecked = false
         }
+    }
+    
+    mutating func updateStats(){
+        
     }
     
     
