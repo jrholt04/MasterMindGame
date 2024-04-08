@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct HomeView: View {
+   
+    @ObservedObject var vm = ViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            HStack{
+                NavigationLink(destination: ContentView(vm: vm)){
+                    Text("game")
+                }
+                NavigationLink(destination: SettingsView(vm: vm)){
+                    Text("settings")
+                }
+            }
+            
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

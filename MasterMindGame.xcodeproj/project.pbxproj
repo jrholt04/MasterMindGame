@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		61333BB32BC0667C005D077A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61333BB22BC0667C005D077A /* StatsView.swift */; };
+		61333BB72BC44EFE005D077A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61333BB62BC44EFE005D077A /* SettingsView.swift */; };
+		61333BBB2BC45DEB005D077A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61333BBA2BC45DEB005D077A /* HomeView.swift */; };
 		616FA2342BA8C14100B448B4 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616FA2332BA8C14100B448B4 /* PlaySound.swift */; };
 		616FA2372BA8C9C800B448B4 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 616FA2362BA8C9C800B448B4 /* background.mp3 */; };
 		616FA2392BA8CC7500B448B4 /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 616FA2382BA8CC7500B448B4 /* chime.mp3 */; };
@@ -25,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		61333BB22BC0667C005D077A /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		61333BB62BC44EFE005D077A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		61333BBA2BC45DEB005D077A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		616FA2332BA8C14100B448B4 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		616FA2362BA8C9C800B448B4 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background.mp3; path = ../../../../../Downloads/background.mp3; sourceTree = "<group>"; };
 		616FA2382BA8CC7500B448B4 /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = chime.mp3; path = ../../../../../Downloads/chime.mp3; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			children = (
 				61B361E32B571ECB004FBCE8 /* MasterMindGameApp.swift */,
 				61B361E52B571ECB004FBCE8 /* ContentView.swift */,
+				61333BBA2BC45DEB005D077A /* HomeView.swift */,
+				61333BB62BC44EFE005D077A /* SettingsView.swift */,
 				61333BB22BC0667C005D077A /* StatsView.swift */,
 				616FA2332BA8C14100B448B4 /* PlaySound.swift */,
 				6190A9562B5DF0AA006D533A /* ViewModel.swift */,
@@ -189,6 +195,8 @@
 				6190A9572B5DF0AA006D533A /* ViewModel.swift in Sources */,
 				61BD75F52BB1FED20096C5B5 /* confetiCannon.swift in Sources */,
 				61B361E62B571ECB004FBCE8 /* ContentView.swift in Sources */,
+				61333BBB2BC45DEB005D077A /* HomeView.swift in Sources */,
+				61333BB72BC44EFE005D077A /* SettingsView.swift in Sources */,
 				61B361E42B571ECB004FBCE8 /* MasterMindGameApp.swift in Sources */,
 				6190A9532B5DE463006D533A /* SymbolicConstants.swift in Sources */,
 				6190A9552B5DE7DE006D533A /* Model.swift in Sources */,

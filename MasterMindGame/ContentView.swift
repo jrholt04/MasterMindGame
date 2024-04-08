@@ -19,7 +19,7 @@ import EffectsLibrary
 struct ContentView: View {
     
     //viewable classs view model
-    @ObservedObject var vm = ViewModel()
+    @ObservedObject var vm : ViewModel
     
     @AppStorage ("totalGames") var totalGames: Int = 0
     @AppStorage ("winPercentage") var winPercentage: Int = 0
@@ -30,16 +30,11 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             VStack{
-                
                 // title of game
                 Text("MASTERMIND")
                     .font(.system(size: CGFloat(TEXTSIZE)))
                     .bold()
-                    //.onTapGesture {
-                    //    vm.resetStats()
-                     //   totalGames = 0
-                     //   wonGames = 0
-                    //}
+                
                 //these are the guesses
                 ForEach(vm.userGuesses){ guessNumber in
                     HStack{
@@ -97,6 +92,7 @@ struct ContentView: View {
                 confettiLost()
             }
         }
+       
         .overlay(gameOverOverlay)
     }
     
@@ -313,6 +309,3 @@ func getFeedBackColor (feadbackColor: feedbackBead?) -> Color {
 
 
 
-#Preview {
-    ContentView()
-}
