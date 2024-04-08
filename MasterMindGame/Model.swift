@@ -205,6 +205,7 @@ struct Model {
         }
     }
     
+    //this resets the user stats that are saved as user defaults 
     mutating func resetStat(){
         for i in 0..<MAX_ATTEMPTS{
             if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {

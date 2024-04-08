@@ -28,21 +28,21 @@ struct StatsView: View {
     
     
     var body: some View {
-        VStack{
+        HStack{
             VStack{
-                Text("\(totalGames)")
-                Text("Games Played")
+                Text("         \(totalGames)")
+                Text("         Games Played")
             }
             VStack{
-                Text("\(Int(winPercent))%")
-                Text("Win Percentage")
-                
+                Text("         \(Int(winPercent))%")
+                Text("           Win Percentage")
             }
         }
         .bold()
         .foregroundColor(.black)
         .font(.system(size: CGFloat(TEXTSIZE / 2)))
             VStack{
+                Text("")
                 ForEach(0..<MAX_ATTEMPTS, id:\.self) {i in
                     Text("row \(i + 1): \(vm.stats[9 - i])")
                 }

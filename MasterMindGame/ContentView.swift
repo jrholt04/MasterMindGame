@@ -35,9 +35,11 @@ struct ContentView: View {
                 Text("MASTERMIND")
                     .font(.system(size: CGFloat(TEXTSIZE)))
                     .bold()
-                    .onTapGesture {
-                        vm.resetStats()
-                    }
+                    //.onTapGesture {
+                    //    vm.resetStats()
+                     //   totalGames = 0
+                     //   wonGames = 0
+                    //}
                 //these are the guesses
                 ForEach(vm.userGuesses){ guessNumber in
                     HStack{
@@ -114,13 +116,13 @@ struct ContentView: View {
                 RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                     .stroke(lineWidth: LINE_WIDTH)
                     .foregroundColor(Color.black)
-                VStack{
+                VStack(alignment: .leading){
                     Text("YOU WON")
                         .bold()
                         .foregroundColor(.black)
                         .font(.system(size: CGFloat(TEXTSIZE * 2)))
                     StatsView(totalGames: totalGames, gamesWon: wonGames, vm: vm)
-                        .fixedSize()
+                        .alignmentGuide(.leading) { _ in 0 }
                 }
             }
             .scaledToFit()
@@ -273,6 +275,7 @@ struct ContentView: View {
         }
     }
    
+    //this is the function that increments the app storage varaiables 
     func incrementGameStats(){
         totalGames += 1
         if vm.gameState == .won {
