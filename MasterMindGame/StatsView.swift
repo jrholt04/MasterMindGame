@@ -29,13 +29,29 @@ struct StatsView: View {
     
     var body: some View {
         HStack{
-            VStack{
-                Text("         \(totalGames)")
-                Text("         Games Played")
+            ZStack{
+                
+                VStack{
+                    Text("         \(totalGames)")
+                    Text("         Games Played")
+                }
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .stroke()
+                    .fill(.black)
+                    .frame(width: 200, height: 50)
+                    .offset(x: 20)
             }
-            VStack{
-                Text("         \(Int(winPercent))%")
-                Text("           Win Percentage")
+            ZStack{
+                
+                VStack{
+                    Text("         \(Int(winPercent))%")
+                    Text("           Win Percentage")
+                }
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .stroke()
+                    .fill(.black)
+                    .frame(width: 200, height: 50)
+                    .offset(x: 20)
             }
         }
         .bold()
