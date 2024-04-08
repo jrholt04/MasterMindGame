@@ -35,6 +35,9 @@ struct ContentView: View {
                 Text("MASTERMIND")
                     .font(.system(size: CGFloat(TEXTSIZE)))
                     .bold()
+                    .onTapGesture {
+                        vm.resetStats()
+                    }
                 //these are the guesses
                 ForEach(vm.userGuesses){ guessNumber in
                     HStack{
@@ -76,6 +79,10 @@ struct ContentView: View {
                             if vm.userGuesses[vm.currentRow].isFullGuess {
                                 vm.nextRow()
                                 haptic.notificationOccurred(.success)
+                                if vm.gameState == .won || vm.gameState == .lost{
+                                    incrementGameStats()
+                                }
+                                
                             }
                         }
                 }
@@ -113,6 +120,7 @@ struct ContentView: View {
                         .foregroundColor(.black)
                         .font(.system(size: CGFloat(TEXTSIZE * 2)))
                     StatsView(totalGames: totalGames, gamesWon: wonGames, vm: vm)
+                        .fixedSize()
                 }
             }
             .scaledToFit()
@@ -262,6 +270,13 @@ struct ContentView: View {
                     
                 }
             }
+        }
+    }
+   
+    func incrementGameStats(){
+        totalGames += 1
+        if vm.gameState == .won {
+            wonGames += 1
         }
     }
     

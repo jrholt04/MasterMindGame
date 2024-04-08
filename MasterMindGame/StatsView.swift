@@ -11,7 +11,7 @@ struct StatsView: View {
     
     var totalGames : Int
     var gamesWon : Int
-    var winPercent: Int
+    var winPercent: Double
     @ObservedObject var vm: ViewModel
     
     init(totalGames: Int, gamesWon: Int, vm: ViewModel) {
@@ -21,7 +21,7 @@ struct StatsView: View {
             winPercent = 0
         }
         else {
-            winPercent = (totalGames/gamesWon)*10
+            winPercent = (Double(gamesWon)/Double(totalGames))*100
         }
         self.vm = vm
     }
@@ -29,22 +29,26 @@ struct StatsView: View {
     
     var body: some View {
         VStack{
-            HStack{
+            VStack{
                 Text("\(totalGames)")
                 Text("Games Played")
             }
-            HStack{
-                Text("\(winPercent)")
+            VStack{
+                Text("\(Int(winPercent))%")
                 Text("Win Percentage")
+                
             }
         }
-        ScrollView{
-            Text("win breakdown")
+        .bold()
+        .foregroundColor(.black)
+        .font(.system(size: CGFloat(TEXTSIZE / 2)))
             VStack{
                 ForEach(0..<MAX_ATTEMPTS, id:\.self) {i in
-                    Text("row \(i + 1): \(vm.stats[i])")
+                    Text("row \(i + 1): \(vm.stats[9 - i])")
                 }
-            }
+            .bold()
+            .foregroundColor(.black)
+            .font(.system(size: CGFloat(TEXTSIZE / 2)))
         }
     }
 }

@@ -111,7 +111,6 @@ struct Model {
     //this takes the function to the next row if it is a full guess
     mutating func nextRow(){
         checkGuess()
-        updateStats()
         //print("this is the value of stat[0] \(stats[0])")
         //this is the base case for the last row
         if (userGuesses[currentRowNumber].isFullGuess == true && currentRowNumber == 0){
@@ -149,6 +148,9 @@ struct Model {
             print("MODEL the TESTING secret code is: ")
             print("MODEL: the test code is \(secretCode[0]), \(secretCode[1]), \(secretCode[2]), \(secretCode[3])")
         }
+        
+        updateStats()
+
     }
     
     //set testmodeguees
