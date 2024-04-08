@@ -4,7 +4,8 @@
 //
 //  Created by Jackson Holt on 4/8/24.
 //
-
+// this is the home page with all of the navigation
+//refrence: https://youtu.be/D0siMqCwMJY
 import SwiftUI
 
 struct HomeView: View {
@@ -12,13 +13,49 @@ struct HomeView: View {
     @ObservedObject var vm = ViewModel()
     
     var body: some View {
+        //navigation stack for the home page to go to settings or game
         NavigationView{
-            HStack{
-                NavigationLink(destination: ContentView(vm: vm)){
-                    Text("game")
-                }
-                NavigationLink(destination: SettingsView(vm: vm)){
-                    Text("settings")
+            ZStack{
+                confettiMain()
+                VStack{
+                    ZStack{
+                        RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                            .fill(.black)
+                        Text("🔴🟠🟡MASTERMIND🟢🔵🟣")
+                            .bold()
+                            .font(.system(size: CGFloat(TEXTSIZE)))
+                            .padding()
+                            .foregroundColor(.white)
+                    }
+                    .scaledToFit()
+                    .padding()
+                    
+                    NavigationLink(destination: ContentView(vm: vm)){
+                        ZStack{
+                            RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                                .fill(.black)
+                                .scaledToFit()
+                                .frame(width: 400, height: 100)
+                            Text("PLAY")
+                                .font(.system(size: CGFloat(TEXTSIZE / 2)))
+                                .foregroundColor(.white)
+                                .bold()
+                        }
+                    }
+                    .padding()
+                    NavigationLink(destination: SettingsView(vm: vm)){
+                        ZStack{
+                            RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                                .fill(.black)
+                                .scaledToFit()
+                                .frame(width: 400, height: 100)
+                            Text("settings")
+                                .font(.system(size: CGFloat(TEXTSIZE / 2)))
+                                .foregroundColor(.white)
+                                .bold()
+                        }
+                        
+                    }
                 }
             }
             

@@ -41,3 +41,21 @@ struct confettiLost: View {
         )
     }
 }
+
+struct confettiMain: View {
+    var body: some View{
+        ConfettiView(
+            config: ConfettiConfig(
+                content: [
+                    .emoji("🔴", 1.0),
+                    .emoji("🟠", 1.0),
+                    .emoji("🔵", 1.0),
+                    .emoji("🟣", 1.0),
+                    .emoji("🟡", 1.0),
+                    .emoji("🟢", 1.0)
+                ]
+            )
+        )
+    }
+}
+
