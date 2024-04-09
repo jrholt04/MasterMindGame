@@ -26,7 +26,7 @@ struct Model {
     var gameState: GameState = .playing
     
     //is music playing or not 
-    var musicOn: Bool = true
+    var musicOn: Bool
     
     //saved data
     var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
@@ -45,6 +45,7 @@ struct Model {
     
     //initiazlizes all of the circles in the array
     init (numberOfCircleOption: Int){
+        musicOn = true
         playSound(sound: "background", type: "mp3")
         circleOptions = Array<CircleOption>()
         secretCode = Array<SecretBead>()
