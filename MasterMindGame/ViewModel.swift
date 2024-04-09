@@ -15,6 +15,10 @@ class ViewModel: ObservableObject  {
     //makes the model viewable to the view model
     @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
+    var colorPallet : Bool {
+        m.colorPallet
+    }
+    
     //pass through for music var
     var musicOn : Bool {
         m.musicOn

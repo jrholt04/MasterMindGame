@@ -61,7 +61,7 @@ struct ContentView: View {
                 HStack {
                     //foreach for all the circles in the selection row
                     ForEach(vm.circleOptions) {thisCircle in
-                        CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected)
+                        CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected, vm: vm)
                         //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
                             .onTapGesture(perform: {
                                 //choose a circle
@@ -142,7 +142,7 @@ struct ContentView: View {
                         .font(.system(size: CGFloat(TEXTSIZE)))
                     HStack{
                         ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self) { i in
-                            CircleGuessView(CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE)
+                            CircleGuessView(colorPallet : vm.colorPallet, CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE)
                         }
                         .padding()
                         .scaledToFit()
@@ -162,6 +162,7 @@ struct ContentView: View {
     struct CircleOptionView: View {
         var colorInt : Int
         var isSelected: Bool
+        var vm: ViewModel
         
         var body: some View{
             ZStack{
@@ -171,7 +172,8 @@ struct ContentView: View {
                     .foregroundColor(Color.black)
                 //main circle
                 Circle()
-                    .foregroundColor(colorArray[colorInt])
+                    .foregroundColor(vm.colorPallet ? colorArray[colorInt] : colorArray2[colorInt])
+                    
                 
             }
         }
@@ -179,8 +181,10 @@ struct ContentView: View {
     
     //view for a single circle of a users guess
     struct CircleGuessView: View{
+        var colorPallet: Bool
         var CircleId: Int?
         var outlineWidth: Int
+        
         var body: some View{
             if let CircleNumber = CircleId{
                 ZStack{
@@ -189,7 +193,7 @@ struct ContentView: View {
                         .foregroundColor(Color.black)
                     //main circle
                     Circle()
-                        .foregroundColor(colorArray[CircleNumber])
+                        .foregroundColor(colorPallet ? colorArray[CircleNumber] : colorArray2[CircleNumber])
                     
                 }
             }
@@ -217,13 +221,13 @@ struct ContentView: View {
                 //for each for each circle in the guess
                 ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self){ column in
                     if (vmLocal.userGuesses[row].isSelectable == true){
-                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: OUTLINESIZE)
+                        CircleGuessView(colorPallet : vmLocal.colorPallet, CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: OUTLINESIZE)
                             .onTapGesture {
                                 vmLocal.setGuessColor(row: row, col: column)
                             }
                     }
                     else{
-                        CircleGuessView(CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: (OUTLINESIZE/2))
+                        CircleGuessView(colorPallet : vmLocal.colorPallet, CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: (OUTLINESIZE/2))
                        
                     }
                 }

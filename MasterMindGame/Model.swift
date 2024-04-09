@@ -28,6 +28,8 @@ struct Model {
     //is music playing or not 
     var musicOn: Bool
     
+    var colorPallet: Bool = false
+    
     //saved data
     var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
     
@@ -199,6 +201,7 @@ struct Model {
         }
     }
     
+    //updates the stats if there was a game won
     mutating func updateStats(){
         if (gameState == .won){
             if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
@@ -220,6 +223,7 @@ struct Model {
         }
     }
     
+    //turns music on and off
     mutating func toggleMusic() {
         if musicOn {
             musicOn = false
@@ -228,6 +232,16 @@ struct Model {
         else {
             musicOn = true
             playSound(sound: "background", type: "mp3")
+        }
+    }
+    
+    //changes from original color pallet to color pallet 2
+    mutating func toggleColorPallet(){
+        if colorPallet{
+            colorPallet = false
+        }
+        else {
+            colorPallet = true
         }
     }
     
