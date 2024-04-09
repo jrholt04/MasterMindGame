@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 //Possible colors of beds
 let colorArray = [Color.red, Color.green, Color.blue, Color.yellow, Color.purple, Color.orange]
-let colorArray2 = [Color.cyan, Color.indigo, Color.black, Color.mint, Color.pink, Color.teal]
+let colorArray2 = [Color.cyan, Color.indigo, Color.black, Color.mint, Color.pink, Color.gray]
 
 //number of circles in the selection row 
 let NUMBER_OF_CIRCLE = 6
@@ -39,3 +39,6 @@ let CORNER_RADDUIS = 16
 
 //line width
 let LINE_WIDTH = 4.0
+
+//this is the outline size for settings
+let SETTING_OUTLINE = 6.0

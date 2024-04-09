@@ -28,6 +28,7 @@ struct Model {
     //is music playing or not 
     var musicOn: Bool
     
+    //this decides which color pannel is selected
     var colorPallet: Bool = false
     
     //saved data
@@ -244,6 +245,7 @@ struct Model {
             colorPallet = true
         }
     }
+    
     
     
     

@@ -15,8 +15,13 @@ class ViewModel: ObservableObject  {
     //makes the model viewable to the view model
     @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
+    //var the represents the color pallet being used true is the origanl false is the new one array2
     var colorPallet : Bool {
         m.colorPallet
+    }
+    
+    func toggleColorPallet() {
+        m.toggleColorPallet()
     }
     
     //pass through for music var

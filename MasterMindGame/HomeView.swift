@@ -43,7 +43,7 @@ struct HomeView: View {
                         }
                     }
                     .padding()
-                    NavigationLink(destination: SettingsView(vm: vm)){
+                    NavigationLink(destination: SettingsView(vm: vm, colorPallet: vm.colorPallet)){
                         ZStack{
                             RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                                 .fill(.black)
