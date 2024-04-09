@@ -11,6 +11,29 @@ struct SettingsView: View {
     @ObservedObject var vm : ViewModel
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            ZStack{
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .foregroundColor(vm.musicOn ? .green : .red)
+                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
+                    .stroke(lineWidth: LINE_WIDTH)
+                    .foregroundColor(Color.black)
+                Text("Music")
+                    .bold()
+                    .font(.system(size: CGFloat(TEXTSIZE)))
+                    .padding()
+                    .foregroundColor(.black)
+            }
+            .scaledToFit()
+            .padding()
+            .onTapGesture{
+                vm.toggleMusic()
+            }
+        }
     }
+    
+
+    
 }
+
+

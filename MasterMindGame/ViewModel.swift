@@ -15,6 +15,16 @@ class ViewModel: ObservableObject  {
     //makes the model viewable to the view model
     @Published var m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     
+    //pass through for music var
+    var musicOn : Bool {
+        m.musicOn
+    }
+    
+    //pass throughg for music toggle function 
+    func toggleMusic() {
+        m.toggleMusic()
+    }
+    
     func restartGame() {
         m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
     }
@@ -86,4 +96,5 @@ class ViewModel: ObservableObject  {
     func resetStats(){
         m.resetStat()
     }
+    
 }

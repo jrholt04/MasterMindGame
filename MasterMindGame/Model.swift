@@ -25,6 +25,9 @@ struct Model {
     // did the user win
     var gameState: GameState = .playing
     
+    //is music playing or not 
+    var musicOn: Bool = true
+    
     //saved data
     var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
     
@@ -213,6 +216,17 @@ struct Model {
                 stats[i] = 0
                 UserDefaults.standard.set(stats, forKey: "stats")
             }
+        }
+    }
+    
+    mutating func toggleMusic() {
+        if musicOn {
+            musicOn = false
+            playSound(sound: "", type: "mp3")
+        }
+        else {
+            musicOn = true
+            playSound(sound: "background", type: "mp3")
         }
     }
     

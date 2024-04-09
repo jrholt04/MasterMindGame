@@ -34,7 +34,6 @@ struct ContentView: View {
                 Text("MASTERMIND")
                     .font(.system(size: CGFloat(TEXTSIZE)))
                     .bold()
-                
                 //these are the guesses
                 ForEach(vm.userGuesses){ guessNumber in
                     HStack{
