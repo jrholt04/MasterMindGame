@@ -5,7 +5,7 @@
 //  Created by Jackson Holt on 4/8/24.
 //
 // this is the home page with all of the navigation
-//refrence: https://youtu.be/D0siMqCwMJY
+//refrence: https://youtu.be/D0siMqCwMJY and https://www.hackingwithswift.com/books/ios-swiftui/adding-a-navigation-bar
 import SwiftUI
 
 struct HomeView: View {
@@ -26,6 +26,7 @@ struct HomeView: View {
                             .font(.system(size: CGFloat(TEXTSIZE)))
                             .padding()
                             .foregroundColor(.white)
+                            
                     }
                     .scaledToFit()
                     .padding()

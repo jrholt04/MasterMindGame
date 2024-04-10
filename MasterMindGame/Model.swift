@@ -26,10 +26,10 @@ struct Model {
     var gameState: GameState = .playing
     
     //is music playing or not 
-    var musicOn: Bool
+    var musicOn: Bool = true
     
     //this decides which color pannel is selected
-    var colorPallet: Bool = false
+    var colorPallet: Bool = true
     
     //saved data
     var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
@@ -48,7 +48,6 @@ struct Model {
     
     //initiazlizes all of the circles in the array
     init (numberOfCircleOption: Int){
-        musicOn = true
         playSound(sound: "background", type: "mp3")
         circleOptions = Array<CircleOption>()
         secretCode = Array<SecretBead>()
@@ -246,6 +245,37 @@ struct Model {
         }
     }
     
+    //reset function that leazes out things that I do not want re- intialed everytime
+    mutating func resetGame() {
+        circleOptions = Array<CircleOption>()
+        secretCode = Array<SecretBead>()
+        for circleIndex in 0..<NUMBER_OF_CIRCLE {
+            circleOptions.append(CircleOption(id: circleIndex, isSelected: false))
+        }
+        
+        //initalize the array of all the users guesses
+        userGuesses = Array<Guess>()
+        for i in 0..<MAX_ATTEMPTS{
+            userGuesses.append(Guess(id: i, isFullGuess: false, isSelectable: false))
+        }
+        userGuesses[currentRowNumber].isSelectable = true
+        
+        //init the secret code array
+        //the randomizer is from this link https://codewithchris.com/swift-random-number/
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            secretCode.append(SecretBead(id: i, colorOfBead: Int(arc4random_uniform(6)), isChecked: false) )
+        }
+        print("MODEL The Regular Secret code is ")
+        for i in 0..<CIRCLE_GUESS_COUNT{
+            print("the \(i)th bead in the guess is color \(secretCode[i].colorOfBead)th color in the array of valid colors")
+            print()
+        }
+        if (TEST_MODE == true){
+            print("MODEL: we are in test mode ")
+            print()
+        }
+        gameState = .playing 
+    }
     
     
     

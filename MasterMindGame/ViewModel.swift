@@ -35,7 +35,7 @@ class ViewModel: ObservableObject  {
     }
     
     func restartGame() {
-        m = Model(numberOfCircleOption: NUMBER_OF_CIRCLE)
+        m.resetGame()
     }
     
     //var for the secret code
