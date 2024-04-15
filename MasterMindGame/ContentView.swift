@@ -93,6 +93,7 @@ struct ContentView: View {
         }
        
         .overlay(gameOverOverlay)
+        
     }
     
     //game over overlay this displays the state of the game whne it is over
@@ -118,9 +119,22 @@ struct ContentView: View {
                         .font(.system(size: CGFloat(TEXTSIZE * 2)))
                     StatsView(totalGames: totalGames, gamesWon: wonGames, vm: vm)
                         .alignmentGuide(.leading) { _ in 0 }
+                    Button(action: {
+                        vm.resetStats()
+                        totalGames = 0
+                        wonGames = 0
+                        winPercentage = 0
+                    }) {
+                        Text("Reset Stats")
+                            .foregroundColor(.green)
+                            .padding()
+                            .background(.black)
+                            .cornerRadius(10)
+                    }
+                    .padding()
                 }
             }
-            .scaledToFit()
+            .frame(height: 150)
             .padding()
             .onTapGesture {
                 vm.restartGame()

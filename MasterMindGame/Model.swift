@@ -275,6 +275,7 @@ struct Model {
             print()
         }
         gameState = .playing 
+        currentRowNumber = MAX_ATTEMPTS - 1
     }
     
     
