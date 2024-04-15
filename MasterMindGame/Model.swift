@@ -21,6 +21,8 @@ enum GameState {
 
 struct Model {
     
+    //var for colorblind mode
+    var colorBlind: Bool = false
     //is the game over?
     // did the user win
     var gameState: GameState = .playing
@@ -223,6 +225,16 @@ struct Model {
         }
     }
     
+    //toggle colorblind mode on and off
+    mutating func toggleColorBlind(){
+        if colorBlind {
+            colorBlind = false
+        }
+        else {
+            colorBlind = true
+        }
+    }
+    
     //turns music on and off
     mutating func toggleMusic() {
         if musicOn {
@@ -247,6 +259,9 @@ struct Model {
     
     //reset function that leazes out things that I do not want re- intialed everytime
     mutating func resetGame() {
+        if musicOn {
+            playSound(sound: "background", type: "mp3")
+        }
         circleOptions = Array<CircleOption>()
         secretCode = Array<SecretBead>()
         for circleIndex in 0..<NUMBER_OF_CIRCLE {

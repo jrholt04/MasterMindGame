@@ -14,7 +14,31 @@ struct SettingsView: View {
     var body: some View {
         VStack{
             HStack{
+                
                 VStack{
+                    
+                    Button(action: {
+                        vm.toggleMusic()
+                    }) {
+                        Text("Music")
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(vm.musicOn ? .green : .red)
+                            .cornerRadius(10)
+                    }
+                    //button for color blind mode
+                    Button(action: {
+                        vm.toggleColorBlind()
+                    }) {
+                        Text("Color Blind Mode")
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(vm.colorBlind ? .green : .red)
+                            .cornerRadius(10)
+                    }
+                    .scaledToFill()
+                    
+                    //this is the color selection pallets
                     ZStack{
                         RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                             .foregroundColor(.white)
@@ -75,26 +99,8 @@ struct SettingsView: View {
                 }
             }
             .padding()
-            
-            ZStack{
-                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
-                    .foregroundColor(vm.musicOn ? .green : .red)
-                RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
-                    .stroke(lineWidth: LINE_WIDTH)
-                    .foregroundColor(Color.black)
-                Text("Music")
-                    .bold()
-                    .font(.system(size: CGFloat(TEXTSIZE)))
-                    .padding()
-                    .foregroundColor(.black)
-            }
-            .scaledToFit()
-            .padding()
-            .onTapGesture{
-                vm.toggleMusic()
-            }
-            
         }
+        .scaledToFit()
     }
 }
 

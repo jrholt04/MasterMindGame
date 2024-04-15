@@ -106,4 +106,13 @@ class ViewModel: ObservableObject  {
         m.resetStat()
     }
     
+    //var for colorblind mode
+    var colorBlind : Bool {
+        m.colorBlind
+    }
+    //func for toggling colorblind on and off
+    func toggleColorBlind() {
+        m.toggleColorBlind()
+    }
+    
 }

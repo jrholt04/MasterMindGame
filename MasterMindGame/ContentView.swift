@@ -60,14 +60,20 @@ struct ContentView: View {
                 }
                 HStack {
                     //foreach for all the circles in the selection row
+                    
                     ForEach(vm.circleOptions) {thisCircle in
-                        CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected, vm: vm)
-                        //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
-                            .onTapGesture(perform: {
-                                //choose a circle
-                                vm.chooseCircle(circleNumber: thisCircle.id)
-                                haptic.notificationOccurred(.success)
-                            })
+                        ZStack{
+                            CircleOptionView(colorInt: thisCircle.id, isSelected: thisCircle.isSelected, vm: vm)
+                            //on the tap we get to see the circles outline bold when it is selected and unbolcd when it is not
+                                .onTapGesture(perform: {
+                                    //choose a circle
+                                    vm.chooseCircle(circleNumber: thisCircle.id)
+                                    haptic.notificationOccurred(.success)
+                                })
+                            if vm.colorBlind {
+                                Text(BLIND_ARRAY[thisCircle.id])
+                            }
+                        }
                     }
                     //enter key
                     makeEnterKeyBody(state: vm.userGuesses[vm.currentRow].isFullGuess ? .enabled : .disabled)
@@ -156,7 +162,7 @@ struct ContentView: View {
                         .font(.system(size: CGFloat(TEXTSIZE)))
                     HStack{
                         ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self) { i in
-                            CircleGuessView(colorPallet : vm.colorPallet, CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE)
+                            CircleGuessView(colorPallet : vm.colorPallet, CircleId: vm.secretCode[i].colorOfBead, outlineWidth: OUTLINESIZE, vm : vm)
                         }
                         .padding()
                         .scaledToFit()
@@ -187,7 +193,6 @@ struct ContentView: View {
                 //main circle
                 Circle()
                     .foregroundColor(vm.colorPallet ? colorArray[colorInt] : colorArray2[colorInt])
-                    
                 
             }
         }
@@ -198,16 +203,22 @@ struct ContentView: View {
         var colorPallet: Bool
         var CircleId: Int?
         var outlineWidth: Int
+        var vm : ViewModel
         
         var body: some View{
             if let CircleNumber = CircleId{
                 ZStack{
+                    
                     Circle()
                         .stroke(lineWidth: CGFloat(outlineWidth) )
                         .foregroundColor(Color.black)
                     //main circle
                     Circle()
                         .foregroundColor(colorPallet ? colorArray[CircleNumber] : colorArray2[CircleNumber])
+                    if vm.colorBlind {
+                        Text(BLIND_ARRAY[CircleNumber])
+                    }
+                    
                     
                 }
             }
@@ -235,13 +246,13 @@ struct ContentView: View {
                 //for each for each circle in the guess
                 ForEach(0..<CIRCLE_GUESS_COUNT, id:\.self){ column in
                     if (vmLocal.userGuesses[row].isSelectable == true){
-                        CircleGuessView(colorPallet : vmLocal.colorPallet, CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: OUTLINESIZE)
+                        CircleGuessView(colorPallet : vmLocal.colorPallet, CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: OUTLINESIZE, vm : vmLocal)
                             .onTapGesture {
                                 vmLocal.setGuessColor(row: row, col: column)
                             }
                     }
                     else{
-                        CircleGuessView(colorPallet : vmLocal.colorPallet, CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: (OUTLINESIZE/2))
+                        CircleGuessView(colorPallet : vmLocal.colorPallet, CircleId: vmLocal.userGuesses[row].guessItem[column], outlineWidth: (OUTLINESIZE/2), vm : vmLocal)
                        
                     }
                 }
@@ -265,7 +276,6 @@ struct ContentView: View {
                                 Circle()
                                     .foregroundColor(getFeedBackColor(feadbackColor: vm.userGuesses[row].feedbackBeads[circle]))
                                     .scaledToFit()
-//
                             }
                         }
                     }
@@ -277,7 +287,6 @@ struct ContentView: View {
                                     Circle()
                                         .foregroundColor(getFeedBackColor(feadbackColor: vm.userGuesses[row].feedbackBeads[circle + 2 ]))
                                         .scaledToFit()
-//
                                 }
                             }
                         }
