@@ -6,6 +6,9 @@
 //
 // this is the home page with all of the navigation
 //refrence: https://youtu.be/D0siMqCwMJY and https://www.hackingwithswift.com/books/ios-swiftui/adding-a-navigation-bar
+//
+//   this is the the home view that allows the user to navigate between all the views
+//
 import SwiftUI
 
 struct HomeView: View {
@@ -16,8 +19,10 @@ struct HomeView: View {
         //navigation stack for the home page to go to settings or game
         NavigationView{
             ZStack{
+                //confetti for the backgorund
                 confettiMain()
                 VStack{
+                    // title for the game
                     ZStack{
                         RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                             .fill(.black)
@@ -31,12 +36,13 @@ struct HomeView: View {
                     .scaledToFit()
                     .padding()
                     
+                    //these are nav links to the game page and the settings page 
                     NavigationLink(destination: ContentView(vm: vm)){
                         ZStack{
                             RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                                 .fill(.black)
                                 .scaledToFit()
-                                .frame(width: 400, height: 100)
+                                .frame(width: CGFloat(WIDTH), height: CGFloat(SHEIGHT))
                             Text("PLAY")
                                 .font(.system(size: CGFloat(TEXTSIZE / 2)))
                                 .foregroundColor(.white)
@@ -44,12 +50,13 @@ struct HomeView: View {
                         }
                     }
                     .padding()
+                    // this is the nav link for the settings view 
                     NavigationLink(destination: SettingsView(vm: vm, colorPallet: vm.colorPallet)){
                         ZStack{
                             RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                                 .fill(.black)
                                 .scaledToFit()
-                                .frame(width: 400, height: 100)
+                                .frame(width: CGFloat(WIDTH), height: CGFloat(SHEIGHT))
                             Text("settings")
                                 .font(.system(size: CGFloat(TEXTSIZE / 2)))
                                 .foregroundColor(.white)

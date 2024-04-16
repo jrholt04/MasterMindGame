@@ -4,6 +4,9 @@
 //
 //  Created by Jackson Holt on 4/8/24.
 //
+// This is the settins view where we can modify the game
+//      music, color pallet, and colorblind mode
+//
 
 import SwiftUI
 
@@ -16,7 +19,7 @@ struct SettingsView: View {
             HStack{
                 
                 VStack{
-                    
+                    //this is the button to turn music on and off
                     Button(action: {
                         vm.toggleMusic()
                     }) {
@@ -55,15 +58,10 @@ struct SettingsView: View {
                                     //main circle
                                     Circle()
                                         .foregroundColor(colorArray2[thisCircle])
-                                    
-                                    
                                 }
-                                
                             }
                             .padding()
                         }
-                        
-                        
                     }
                     .padding()
                     .onTapGesture {

@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 //Possible colors of beds
 let colorArray = [Color.red, Color.green, Color.blue, Color.yellow, Color.purple, Color.orange]
-let colorArray2 = [Color.cyan, Color.indigo, Color.black, Color.mint, Color.pink, Color.gray]
+let colorArray2 = [Color.cyan, Color.indigo, Color.brown, Color.mint, Color.pink, Color.gray]
 
 //This is the array of strings for the colorblind mode
 let BLIND_ARRAY = ["♥︎", "♣︎", "♠︎", "♦︎", "★", "●"]
@@ -45,3 +45,20 @@ let LINE_WIDTH = 4.0
 
 //this is the outline size for settings
 let SETTING_OUTLINE = 6.0
+
+//smaller raduis for smaller rectangles 
+let SMALLER_RADUIS = 10
+
+//frame height
+let HEIGHT = 150
+
+//smaller frame height
+let SHEIGHT = 100 
+
+//width
+let WIDTH = 400
+
+//stats page symbolic const
+let statsHEIGHT = 50
+let statsWIDTH = 200
+let statsOFFSET = 20

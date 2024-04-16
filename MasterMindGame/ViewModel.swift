@@ -94,7 +94,7 @@ class ViewModel: ObservableObject  {
     var gameState: GameState{
        return  m.gameState
     }
-    
+    //stats array pass throug 
     var stats: [Int] {
         if let statsArray = UserDefaults.standard.array(forKey: "stats") as? [Int] {
             return statsArray
@@ -102,6 +102,7 @@ class ViewModel: ObservableObject  {
         return Array(repeating: 0, count: CIRCLE_GUESS_COUNT)
     }
     
+    //func pass through for the reset stats
     func resetStats(){
         m.resetStat()
     }

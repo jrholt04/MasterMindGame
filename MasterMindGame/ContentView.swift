@@ -40,7 +40,6 @@ struct ContentView: View {
                         feedBack(row: guessNumber.id, vm: vm)
                         CircleGuessRow(row: guessNumber.id, vmLocal: vm)
                     }
-                    
                 }
                 
                 //this is the selection row of colors
@@ -70,8 +69,10 @@ struct ContentView: View {
                                     vm.chooseCircle(circleNumber: thisCircle.id)
                                     haptic.notificationOccurred(.success)
                                 })
+                            //this is what is inserted if there is colorblind mode
                             if vm.colorBlind {
                                 Text(BLIND_ARRAY[thisCircle.id])
+                                    .font(. system(size: CGFloat(TEXTSIZE)))
                             }
                         }
                     }
@@ -123,8 +124,10 @@ struct ContentView: View {
                         .bold()
                         .foregroundColor(.black)
                         .font(.system(size: CGFloat(TEXTSIZE * 2)))
+                    //this is the stats view that is aligend to the same side as the you won text
                     StatsView(totalGames: totalGames, gamesWon: wonGames, vm: vm)
                         .alignmentGuide(.leading) { _ in 0 }
+                    // reset button to reset all of the stats
                     Button(action: {
                         vm.resetStats()
                         totalGames = 0
@@ -135,19 +138,19 @@ struct ContentView: View {
                             .foregroundColor(.green)
                             .padding()
                             .background(.black)
-                            .cornerRadius(10)
+                            .cornerRadius(CGFloat(SMALLER_RADUIS))
                     }
                     .padding()
                 }
             }
-            .frame(height: 150)
+            .frame(height: CGFloat(HEIGHT))
             .padding()
             .onTapGesture {
                 vm.restartGame()
                 haptic.notificationOccurred(.success)
             }
             
-            
+        //the overlay for if you have lost 
         case .lost:
             ZStack{
                 RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
@@ -217,9 +220,12 @@ struct ContentView: View {
                         .foregroundColor(colorPallet ? colorArray[CircleNumber] : colorArray2[CircleNumber])
                     if vm.colorBlind {
                         Text(BLIND_ARRAY[CircleNumber])
+                            .font(. system(size: CGFloat(TEXTSIZE)))
                     }
-                    
-                    
+                    else {
+                        Text(" ")
+                            .font(. system(size: CGFloat(TEXTSIZE)))
+                    }
                 }
             }
             else {
@@ -230,6 +236,8 @@ struct ContentView: View {
                     //main circle
                     Circle()
                         .foregroundColor(Color.white)
+                    Text(" ")
+                        .font(. system(size: CGFloat(TEXTSIZE)))
                 }
             }
         }

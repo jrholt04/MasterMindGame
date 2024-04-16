@@ -35,12 +35,12 @@ struct Model {
     
     //saved data
     var stats : [Any] = UserDefaults.standard.array(forKey: "stats") ?? Array(repeating: 0, count: MAX_ATTEMPTS)
-    
-    
-    //our variables for the model
+
     // this is an array that represents the selection colors at the bottom of the screen
     var circleOptions: Array<CircleOption>
+    
     var currentCircle: Int? //this is an optional and the selected color in the selection row
+    
     var currentRowNumber = MAX_ATTEMPTS - 1
     //array of the secret code
     var secretCode: Array<SecretBead>
@@ -257,8 +257,10 @@ struct Model {
         }
     }
     
-    //reset function that leazes out things that I do not want re- intialed everytime
+    //reset function that leazes out things that I do not want re-intialed everytime
     mutating func resetGame() {
+        currentRowNumber = MAX_ATTEMPTS - 1
+        
         if musicOn {
             playSound(sound: "background", type: "mp3")
         }

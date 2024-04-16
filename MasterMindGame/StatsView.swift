@@ -4,6 +4,9 @@
 //
 //  Created by Jackson Holt on 4/5/24.
 //
+//   This is the stats view that allows the user to see their percent won, games played and win distribution
+//
+//
 
 import SwiftUI
 
@@ -17,6 +20,7 @@ struct StatsView: View {
     init(totalGames: Int, gamesWon: Int, vm: ViewModel) {
         self.totalGames = totalGames
         self.gamesWon = gamesWon
+       // this calcuates the 
         if (gamesWon == 0){
             winPercent = 0
         }
@@ -29,6 +33,7 @@ struct StatsView: View {
     
     var body: some View {
         HStack{
+            //this displays the total games
             ZStack{
                 
                 VStack{
@@ -38,9 +43,10 @@ struct StatsView: View {
                 RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                     .stroke()
                     .fill(.black)
-                    .frame(width: 200, height: 50)
-                    .offset(x: 20)
+                    .frame(width: CGFloat(statsWIDTH), height: CGFloat(statsHEIGHT))
+                    .offset(x: CGFloat(statsOFFSET))
             }
+            // this displays the win percentage
             ZStack{
                 
                 VStack{
@@ -50,8 +56,8 @@ struct StatsView: View {
                 RoundedRectangle(cornerRadius: CGFloat(CORNER_RADDUIS))
                     .stroke()
                     .fill(.black)
-                    .frame(width: 200, height: 50)
-                    .offset(x: 20)
+                    .frame(width: CGFloat(statsWIDTH), height: CGFloat(statsHEIGHT))
+                    .offset(x: CGFloat(statsOFFSET))
             }
         }
         .bold()
@@ -60,7 +66,7 @@ struct StatsView: View {
             VStack{
                 Text("")
                 ForEach(0..<MAX_ATTEMPTS, id:\.self) {i in
-                    Text("row \(i + 1): \(vm.stats[9 - i])")
+                    Text("row \(i + 1): \(vm.stats[(MAX_ATTEMPTS - 1) - i])")
                 }
             .bold()
             .foregroundColor(.black)
