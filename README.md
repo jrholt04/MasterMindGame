@@ -14,7 +14,7 @@ This is an IOS game that allows you to play a version of the board game mastermi
 
 <p align="center">
 Open the App: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/OPjqFJ7" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 
 <p align="center">
