@@ -34,7 +34,7 @@ Lossing Screen: <br/>
 
 <p align="center">
 Settings Page: <br/>
-<img src="https://imgur.com/OPjqFJ7.png" height="80%" width="80%" alt="Settings Page"/>
+<img src="https://imgur.com/eMCfonD.png" height="80%" width="80%" alt="Settings Page"/>
 <br />
 
 
