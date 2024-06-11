@@ -13,23 +13,28 @@ This is an IOS game that allows you to play a version of the board game mastermi
 <h2>Program walk-through:</h2>
 
 <p align="center">
-Open the App: <br/>
-<img src="https://imgur.com/OPjqFJ7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Home Page: <br/>
+<img src="https://imgur.com/OPjqFJ7.png" height="80%" width="80%" alt="HomePage"/>
 <br />
 
 <p align="center">
 Gameplay: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/ZrK3mND.png" height="80%" width="80%" alt="Gameplay"/>
 <br />
 
 <p align="center">
-Win: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Winning Screen: <br/>
+<img src="https://imgur.com/K2UwDMO.png" height="80%" width="80%" alt="Winning Screen"/>
 <br />
 
 <p align="center">
-Loss: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Lossing Screen: <br/>
+<img src="https://imgur.com/ZYin7s9.png" height="80%" width="80%" alt="Lost screen"/>
+<br />
+
+<p align="center">
+Settings Page: <br/>
+<img src="https://imgur.com/OPjqFJ7.png" height="80%" width="80%" alt="Settings Page"/>
 <br />
 
 
