@@ -11,10 +11,11 @@ In this app, you’ll be playing the classic Mastermind game, where you guess th
 
 Here’s the lowdown on how it works:
 
-Secret Code Generation: Our app conjures up a mysterious code, hidden away like a pirate's treasure. 🏴‍☠️
-Make Your Guess: Channel your inner detective and make your guess. Are you feeling lucky? 🍀
-Clues Galore: The app gives you clues—black pegs for correct colors in the right spot and white pegs for correct colors in the wrong spot. It's like a riddle wrapped in a puzzle, inside a SwiftUI enigma! 🧩🕵️‍♀️
-Break the Code: Keep guessing and deducing until you crack the code or run out of guesses. Victory tastes sweet, like digital candy! 🍬
+1) Secret Code Generation: Our app conjures up a mysterious code, hidden away like a pirate's treasure. 🏴‍☠️
+2) Make Your Guess: Channel your inner detective and make your guess. Are you feeling lucky? 🍀
+3) Clues Galore: The app gives you clues—black pegs for correct colors in the right spot and white pegs for correct colors in the wrong spot. It's like a riddle wrapped in a puzzle, inside a SwiftUI enigma! 🧩🕵️‍♀️
+4) Break the Code: Keep guessing and deducing until you crack the code or run out of guesses. Victory tastes sweet, like digital candy! 🍬
+   
 So grab your magnifying glass, don your detective hat, and dive into the world of Mastermind in SwiftUI. It's codebreaking fun that’ll keep your brain sharp and your fingers tapping. Happy sleuthing! 🔍💡
 <br />
 
