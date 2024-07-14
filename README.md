@@ -3,7 +3,19 @@
  ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
 
 <h2>Description</h2>
-This is an IOS game that allows you to play a version of the board game mastermind. This app is fully functional with background music, non-volitile stats, animation and more. The objective of the game is simple. The user goal is to uncover the randomly generated four beed secret code in less than 10 guesses, with red feedback beeds meaning you have the right color in the right spot and white meaning you have the right color in the wrong spot. 
+Mastermind in SwiftUI: Codebreaking Fun for Aspiring Detectives! 🕵️‍♂️🧩
+
+Step into the world of SwiftUI, where our Mastermind app is ready to test your codebreaking skills! Get ready to unleash your inner Sherlock Holmes and crack the code with style and a dash of Swift magic.
+
+In this app, you’ll be playing the classic Mastermind game, where you guess the secret code and our app gives you clues to guide you to victory. Think of it as a high-tech, digital escape room, but without the actual room!
+
+Here’s the lowdown on how it works:
+
+Secret Code Generation: Our app conjures up a mysterious code, hidden away like a pirate's treasure. 🏴‍☠️
+Make Your Guess: Channel your inner detective and make your guess. Are you feeling lucky? 🍀
+Clues Galore: The app gives you clues—black pegs for correct colors in the right spot and white pegs for correct colors in the wrong spot. It's like a riddle wrapped in a puzzle, inside a SwiftUI enigma! 🧩🕵️‍♀️
+Break the Code: Keep guessing and deducing until you crack the code or run out of guesses. Victory tastes sweet, like digital candy! 🍬
+So grab your magnifying glass, don your detective hat, and dive into the world of Mastermind in SwiftUI. It's codebreaking fun that’ll keep your brain sharp and your fingers tapping. Happy sleuthing! 🔍💡
 <br />
 
 <h2>Environments Used </h2>
